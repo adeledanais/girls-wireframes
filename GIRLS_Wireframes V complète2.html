@@ -1,0 +1,2600 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GIRLS — Wireframes v1</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+    background: #E8E8E8;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 16px;
+  }
+
+  h1 {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 8px;
+  }
+
+  .subtitle {
+    font-size: 12px;
+    color: #BBB;
+    margin-bottom: 32px;
+    text-align: center;
+  }
+
+  /* NAV */
+  .nav {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 32px;
+    max-width: 600px;
+  }
+
+  .nav-btn {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 20px;
+    border: 1px solid #CCC;
+    background: white;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .nav-btn:hover { background: #F0F0F0; }
+  .nav-btn.active { background: #333; color: white; border-color: #333; }
+
+  /* PHONE */
+  .phone-wrap {
+    position: relative;
+  }
+
+  .phone {
+    width: 390px;
+    height: 844px;
+    background: white;
+    border-radius: 50px;
+    overflow: hidden;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.08), inset 0 0 0 2px rgba(255,255,255,0.5);
+    position: relative;
+  }
+
+  /* STATUS BAR */
+  .status-bar {
+    height: 44px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 28px;
+    flex-shrink: 0;
+  }
+
+  .status-time { font-size: 15px; font-weight: 600; color: #1A1A1A; }
+  .status-icons { display: flex; gap: 6px; align-items: center; }
+  .status-icon { width: 16px; height: 10px; background: #1A1A1A; border-radius: 2px; }
+  .status-icon.wifi { width: 15px; height: 11px; clip-path: polygon(50% 0%, 0% 100%, 100% 100%); border-radius: 0; }
+  .status-icon.battery { width: 25px; height: 12px; border: 1.5px solid #1A1A1A; border-radius: 3px; position: relative; }
+  .status-icon.battery::after { content:''; position:absolute; right:-5px; top:3px; width:3px; height:6px; background:#1A1A1A; border-radius:0 2px 2px 0; }
+  .status-icon.battery::before { content:''; position:absolute; left:2px; top:2px; bottom:2px; right:4px; background:#1A1A1A; border-radius:1px; }
+
+  /* SCREEN */
+  .screen {
+    display: none;
+    flex-direction: column;
+    height: 800px;
+    overflow: hidden;
+  }
+
+  .screen.active { display: flex; }
+
+  /* COMPONENTS */
+  .img-placeholder {
+    background: #E0E0E0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .img-placeholder::before, .img-placeholder::after {
+    content: '';
+    position: absolute;
+    background: #CCC;
+  }
+
+  .img-placeholder::before {
+    width: 1px;
+    height: 100%;
+    left: 50%;
+    top: 0;
+    transform: rotate(45deg) scaleY(2);
+  }
+
+  .img-placeholder::after {
+    width: 1px;
+    height: 100%;
+    left: 50%;
+    top: 0;
+    transform: rotate(-45deg) scaleY(2);
+  }
+
+  .img-label {
+    font-size: 11px;
+    color: #AAA;
+    position: relative;
+    z-index: 1;
+    background: rgba(255,255,255,0.8);
+    padding: 2px 8px;
+    border-radius: 10px;
+  }
+
+  .btn {
+    padding: 16px;
+    border-radius: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    width: 100%;
+  }
+
+  .btn-primary { background: #333; color: white; }
+  .btn-secondary { background: #F0F0F0; color: #333; }
+  .btn-outline { background: white; color: #333; border: 1.5px solid #DDD; }
+
+  .input-field {
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: 1.5px solid #E0E0E0;
+    font-size: 15px;
+    color: #999;
+    background: #FAFAFA;
+    width: 100%;
+  }
+
+  .tag {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    display: inline-block;
+  }
+
+  .tag-outline { border: 1.5px solid #DDD; color: #666; background: white; }
+  .tag-filled { background: #333; color: white; }
+
+  .section-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1A1A1A;
+  }
+
+  .section-sub {
+    font-size: 14px;
+    color: #999;
+    margin-top: 4px;
+    line-height: 1.5;
+  }
+
+  .divider {
+    height: 1px;
+    background: #F0F0F0;
+    margin: 0 -20px;
+  }
+
+  /* NAV BAR */
+  .bottom-nav {
+    height: 80px;
+    border-top: 1px solid #F0F0F0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0 8px;
+    padding-bottom: 16px;
+    flex-shrink: 0;
+  }
+
+  .nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+  }
+
+  .nav-icon {
+    width: 26px;
+    height: 26px;
+    background: #DDD;
+    border-radius: 6px;
+  }
+
+  .nav-icon.active-icon { background: #333; }
+
+  .nav-label { font-size: 10px; color: #BBB; }
+  .nav-label.active-label { color: #333; font-weight: 600; }
+
+  /* TOP BAR */
+  .top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+    flex-shrink: 0;
+  }
+
+  .back-btn {
+    width: 36px;
+    height: 36px;
+    background: #F5F5F5;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: #333;
+    cursor: pointer;
+  }
+
+  .top-title { font-size: 17px; font-weight: 600; color: #1A1A1A; }
+
+  /* PROGRESS BAR */
+  .progress-wrap { padding: 0 20px; margin-bottom: 8px; flex-shrink: 0; }
+  .progress-bar { height: 4px; background: #F0F0F0; border-radius: 4px; }
+  .progress-fill { height: 4px; background: #333; border-radius: 4px; transition: width 0.3s; }
+
+  /* SCROLL AREA */
+  .scroll-area {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0 20px;
+    scrollbar-width: none;
+  }
+
+  .scroll-area::-webkit-scrollbar { display: none; }
+
+  /* ANNOTATION */
+  .annotation {
+    position: absolute;
+    right: -160px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    pointer-events: none;
+  }
+
+  .annotation-line {
+    width: 40px;
+    height: 1px;
+    background: #AAA;
+    flex-shrink: 0;
+  }
+
+  .annotation-text {
+    font-size: 11px;
+    color: #888;
+    font-style: italic;
+    white-space: nowrap;
+  }
+
+  /* =================== SCREENS =================== */
+
+  /* S1 - SPLASH */
+  .splash-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 32px;
+    gap: 0;
+  }
+
+  .splash-logo {
+    font-size: 64px;
+    font-weight: 800;
+    letter-spacing: -2px;
+    color: #1A1A1A;
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+
+  .splash-tagline {
+    font-size: 16px;
+    color: #999;
+    font-style: italic;
+    margin-bottom: 60px;
+  }
+
+  .splash-visual {
+    width: 200px;
+    height: 200px;
+    background: #F0F0F0;
+    border-radius: 100px;
+    margin-bottom: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .splash-visual-inner {
+    width: 120px;
+    height: 120px;
+    background: #DDD;
+    border-radius: 60px;
+  }
+
+  .splash-buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  /* S2 - INSCRIPTION */
+  /* S3 - FEMMES ONLY */
+  .femmes-icon {
+    width: 80px;
+    height: 80px;
+    background: #F0F0F0;
+    border-radius: 40px;
+    margin: 0 auto 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+  }
+
+  /* PROFILE PHOTO GRID */
+  .photo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .photo-main {
+    grid-column: span 2;
+    height: 160px;
+  }
+
+  .photo-small { height: 100px; }
+
+  .photo-add {
+    height: 100px;
+    background: #F5F5F5;
+    border: 2px dashed #DDD;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    color: #CCC;
+  }
+
+  /* PROMPT CARD */
+  .prompt-card {
+    background: #F8F8F8;
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 12px;
+  }
+
+  .prompt-q { font-size: 13px; color: #999; margin-bottom: 8px; }
+  .prompt-a { font-size: 15px; color: #333; font-style: italic; }
+  .prompt-empty { font-size: 14px; color: #CCC; font-style: italic; }
+
+  /* MATCH CARD */
+  .match-card {
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 12px;
+  }
+
+  .match-photo {
+    height: 380px;
+    background: #E0E0E0;
+  }
+
+  .match-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.5));
+    padding: 20px;
+    color: white;
+  }
+
+  .match-name { font-size: 24px; font-weight: 700; }
+  .match-age { font-size: 16px; opacity: 0.8; }
+  .match-location { font-size: 13px; opacity: 0.7; margin-top: 4px; }
+
+  .match-actions {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    padding: 16px 20px;
+  }
+
+  .match-btn {
+    width: 64px;
+    height: 64px;
+    border-radius: 32px;
+    background: #F0F0F0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+  .match-btn.primary { background: #333; }
+
+  /* CHAT LIST */
+  .chat-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 0;
+    border-bottom: 1px solid #F5F5F5;
+    cursor: pointer;
+  }
+
+  .chat-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 26px;
+    background: #E0E0E0;
+    flex-shrink: 0;
+  }
+
+  .chat-info { flex: 1; }
+  .chat-name { font-size: 15px; font-weight: 600; color: #1A1A1A; }
+  .chat-preview { font-size: 13px; color: #999; margin-top: 2px; }
+  .chat-time { font-size: 12px; color: #BBB; }
+
+  .unread-dot {
+    width: 10px;
+    height: 10px;
+    background: #333;
+    border-radius: 5px;
+  }
+
+  /* CHAT */
+  .chat-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    border-bottom: 1px solid #F0F0F0;
+    flex-shrink: 0;
+  }
+
+  .chat-avatar-sm {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    background: #E0E0E0;
+  }
+
+  .msg-bubble {
+    max-width: 75%;
+    padding: 10px 14px;
+    border-radius: 18px;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 6px;
+  }
+
+  .msg-them { background: #F0F0F0; color: #333; align-self: flex-start; border-bottom-left-radius: 4px; }
+  .msg-me { background: #333; color: white; align-self: flex-end; border-bottom-right-radius: 4px; }
+
+  .msg-time { font-size: 11px; color: #BBB; text-align: center; margin: 12px 0; }
+
+  .chat-input-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 20px;
+    border-top: 1px solid #F0F0F0;
+    flex-shrink: 0;
+  }
+
+  .chat-input {
+    flex: 1;
+    padding: 10px 16px;
+    background: #F5F5F5;
+    border-radius: 20px;
+    font-size: 14px;
+    color: #999;
+    border: none;
+  }
+
+  .send-btn {
+    width: 36px;
+    height: 36px;
+    background: #333;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* POPUP */
+  .popup-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    align-items: flex-end;
+    z-index: 10;
+  }
+
+  .popup-sheet {
+    background: white;
+    border-radius: 28px 28px 0 0;
+    padding: 32px 24px 40px;
+    width: 100%;
+  }
+
+  .popup-handle {
+    width: 40px;
+    height: 4px;
+    background: #E0E0E0;
+    border-radius: 2px;
+    margin: 0 auto 24px;
+  }
+
+  /* MATCH CELEBRATION */
+  .celebration {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    gap: 20px;
+    text-align: center;
+  }
+
+  .celebration-avatars {
+    display: flex;
+    gap: -16px;
+    margin-bottom: 8px;
+  }
+
+  .cel-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 40px;
+    background: #E0E0E0;
+    border: 3px solid white;
+  }
+
+  .cel-avatar:last-child { margin-left: -20px; }
+
+  .celebration-title {
+    font-size: 28px;
+    font-weight: 800;
+    color: #1A1A1A;
+  }
+
+  .celebration-sub { font-size: 15px; color: #999; }
+
+  /* BADGE CERTIFIED */
+  .badge-icon {
+    width: 100px;
+    height: 100px;
+    background: #F0F0F0;
+    border-radius: 50px;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+  }
+
+  /* PROFILE DETAIL */
+  .profile-detail-photo {
+    height: 300px;
+    background: #E0E0E0;
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .profile-detail-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.6));
+    padding: 20px;
+    color: white;
+  }
+
+  .certified-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(255,255,255,0.2);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    margin-top: 4px;
+  }
+
+</style>
+</head>
+<body>
+
+<h1>GIRLS — Wireframes</h1>
+<p class="subtitle">Prototype cliquable · 28 écrans · v1 + v2 + v3</p>
+
+<div class="nav">
+  <button class="nav-btn active" onclick="goTo('s1')">1. Splash</button>
+  <button class="nav-btn" onclick="goTo('s2')">2. Inscription</button>
+  <button class="nav-btn" onclick="goTo('s3')">3. Espace femmes</button>
+  <button class="nav-btn" onclick="goTo('s4')">4. Certifiée</button>
+  <button class="nav-btn" onclick="goTo('s5')">5. Photos</button>
+  <button class="nav-btn" onclick="goTo('s6')">6. Prompts</button>
+  <button class="nav-btn" onclick="goTo('s7')">7. Critères</button>
+  <button class="nav-btn" onclick="goTo('s8')">8. Aperçu profil</button>
+  <button class="nav-btn" onclick="goTo('s14')">9. Rencontrer</button>
+  <button class="nav-btn" onclick="goTo('s27')">10. Coups de cœur reçus</button>
+  <button class="nav-btn" onclick="goTo('s15')">11. Mes Copines</button>
+  <button class="nav-btn" onclick="goTo('s10')">12. Profil violet</button>
+  <button class="nav-btn" onclick="goTo('s10b')">13. Profil terracotta</button>
+  <button class="nav-btn" onclick="goTo('s11')">14. Coup de cœur !</button>
+  <button class="nav-btn" onclick="goTo('s22')">15. Messages</button>
+  <button class="nav-btn" onclick="goTo('s13')">16. Chat 1-to-1</button>
+  <button class="nav-btn" onclick="goTo('s24')">17. Album partagé</button>
+  <button class="nav-btn" onclick="goTo('s25')">18. Planifier RDV</button>
+  <button class="nav-btn" onclick="goTo('s17')">19. Groupe chat</button>
+  <button class="nav-btn" onclick="goTo('s16')">20. Sortir — Activités</button>
+  <button class="nav-btn" onclick="goTo('s18')">21. Créer activité</button>
+  <button class="nav-btn" onclick="goTo('s19')">22. Salons — Tous</button>
+  <button class="nav-btn" onclick="goTo('s19b')">23. Mes salons</button>
+  <button class="nav-btn" onclick="goTo('s20')">24. Intérieur salon</button>
+  <button class="nav-btn" onclick="goTo('s21')">25. Mon profil</button>
+  <button class="nav-btn" onclick="goTo('s28')">26. QR code</button>
+  <button class="nav-btn" onclick="goTo('s26')">27. Points & Badges</button>
+  <button class="nav-btn" onclick="goTo('s21b')">28. Mes souvenirs</button>
+</div>
+
+<div class="phone-wrap">
+  <div class="phone">
+
+    <!-- STATUS BAR -->
+    <div class="status-bar">
+      <span class="status-time">9:41</span>
+      <div class="status-icons">
+        <div class="status-icon wifi"></div>
+        <div class="status-icon"></div>
+        <div class="status-icon battery"></div>
+      </div>
+    </div>
+
+    <!-- S1 SPLASH -->
+    <div class="screen active" id="s1">
+      <div class="splash-content">
+        <div class="splash-logo">GIRLS</div>
+        <div class="splash-tagline">Friendship, IRL</div>
+        <div class="splash-visual">
+          <div class="splash-visual-inner"></div>
+        </div>
+        <div class="splash-buttons">
+          <button class="btn btn-primary" onclick="goTo('s2')">Commencer</button>
+          <button class="btn btn-outline">J'ai déjà un compte</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- S2 INSCRIPTION -->
+    <div class="screen" id="s2">
+      <div class="top-bar">
+        <div class="back-btn" onclick="goTo('s1')">←</div>
+        <div class="top-title"></div>
+        <div style="width:36px"></div>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-bar"><div class="progress-fill" style="width:15%"></div></div>
+      </div>
+      <div class="scroll-area" style="padding-top: 24px;">
+        <div class="section-title">Créer mon compte</div>
+        <div class="section-sub" style="margin-bottom: 32px;">Rejoins des milliers de filles près de chez toi</div>
+
+        <div style="display:flex; flex-direction:column; gap:12px; margin-bottom: 24px;">
+          <input class="input-field" placeholder="Ton prénom" readonly>
+          <input class="input-field" placeholder="Adresse email" readonly>
+          <input class="input-field" placeholder="Numéro de téléphone" readonly>
+          <input class="input-field" placeholder="Mot de passe" readonly>
+        </div>
+
+        <button class="btn btn-primary" onclick="goTo('s3')" style="margin-bottom: 16px;">Continuer</button>
+
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom: 16px;">
+          <div style="flex:1; height:1px; background:#F0F0F0;"></div>
+          <span style="font-size:13px; color:#BBB;">ou</span>
+          <div style="flex:1; height:1px; background:#F0F0F0;"></div>
+        </div>
+
+        <button class="btn btn-outline" style="margin-bottom: 12px;">Continuer avec Apple</button>
+        <button class="btn btn-outline">Continuer avec Google</button>
+
+        <p style="font-size:11px; color:#BBB; text-align:center; margin-top:20px; line-height:1.6;">En créant un compte tu acceptes nos Conditions d'utilisation et notre Politique de confidentialité</p>
+      </div>
+    </div>
+
+    <!-- S3 FEMMES UNIQUEMENT -->
+    <div class="screen" id="s3">
+      <div class="top-bar">
+        <div class="back-btn" onclick="goTo('s2')">←</div>
+        <div style="width:36px"></div>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-bar"><div class="progress-fill" style="width:30%"></div></div>
+      </div>
+      <div class="scroll-area" style="padding-top: 40px; text-align: center;">
+        <div class="femmes-icon">🌸</div>
+        <div class="section-title" style="margin-bottom: 12px;">GIRLS est un espace réservé aux femmes</div>
+        <div class="section-sub" style="margin-bottom: 40px; padding: 0 16px;">Une communauté safe, bienveillante, sans ambiguïté. Pour faire de vraies amies, IRL.</div>
+
+        <div style="background:#F8F8F8; border-radius:16px; padding: 20px; text-align:left; margin-bottom:32px;">
+          <div style="font-size:13px; color:#666; line-height:1.8;">
+            <div style="margin-bottom:8px;">✓ &nbsp;Réservé aux femmes</div>
+            <div style="margin-bottom:8px;">✓ &nbsp;Pas de swipe basé sur les photos</div>
+            <div style="margin-bottom:8px;">✓ &nbsp;Zéro ambiguïté romantique</div>
+            <div>✓ &nbsp;Des vraies rencontres IRL</div>
+          </div>
+        </div>
+
+        <button class="btn btn-primary" onclick="goTo('s4')">Je confirme être une femme</button>
+      </div>
+    </div>
+
+    <!-- S4 CERTIFIÉE -->
+    <div class="screen" id="s4">
+      <div class="top-bar">
+        <div class="back-btn" onclick="goTo('s3')">←</div>
+        <div style="width:36px"></div>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-bar"><div class="progress-fill" style="width:45%"></div></div>
+      </div>
+      <div class="scroll-area" style="padding-top: 32px; text-align: center;">
+        <div class="badge-icon">✓</div>
+        <div class="section-title" style="margin-bottom: 12px;">Obtiens le badge Certifiée</div>
+        <div class="section-sub" style="margin-bottom: 32px; padding: 0 8px;">Un badge visible sur ton profil pour rassurer les autres. Optionnel, mais recommandé.</div>
+
+        <div style="background:#F8F8F8; border-radius:16px; padding:20px; text-align:left; margin-bottom:24px;">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px; padding-bottom:16px; border-bottom:1px solid #EEE;">
+            <div style="width:40px;height:40px;background:#E0E0E0;border-radius:8px;flex-shrink:0;"></div>
+            <div>
+              <div style="font-size:14px; font-weight:600; color:#333;">Pièce d'identité</div>
+              <div style="font-size:12px; color:#999;">Photo de ta CNI ou passeport</div>
+            </div>
+          </div>
+          <div style="display:flex; align-items:center; gap:12px;">
+            <div style="width:40px;height:40px;background:#E0E0E0;border-radius:8px;flex-shrink:0;"></div>
+            <div>
+              <div style="font-size:14px; font-weight:600; color:#333;">Selfie de vérification</div>
+              <div style="font-size:12px; color:#999;">Photo de toi pour confirmer</div>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn btn-primary" onclick="goTo('s5')" style="margin-bottom:12px;">Me faire certifier</button>
+        <button class="btn btn-secondary" onclick="goTo('s5')">Passer pour l'instant</button>
+        <p style="font-size:11px; color:#BBB; margin-top:16px; line-height:1.6;">Tes données sont chiffrées et ne sont jamais partagées</p>
+      </div>
+    </div>
+
+    <!-- S5 PHOTOS -->
+    <div class="screen" id="s5">
+      <div class="top-bar">
+        <div class="back-btn" onclick="goTo('s4')">←</div>
+        <div class="top-title">Mon profil</div>
+        <div style="font-size:13px; color:#999; font-weight:500;">1/3</div>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-bar"><div class="progress-fill" style="width:60%"></div></div>
+      </div>
+      <div class="scroll-area" style="padding-top:16px;">
+        <div class="section-title" style="margin-bottom:4px;">Tes photos</div>
+        <div class="section-sub" style="margin-bottom:20px;">Ajoute une légende à chaque photo — ça dit bien plus que l'image !</div>
+
+        <div class="photo-grid" style="margin-bottom:16px;">
+          <div class="img-placeholder photo-main">
+            <span class="img-label">Photo principale</span>
+          </div>
+          <div class="img-placeholder photo-small">
+            <span class="img-label">Photo 2</span>
+          </div>
+          <div class="img-placeholder photo-small">
+            <span class="img-label">Photo 3</span>
+          </div>
+          <div class="img-placeholder photo-small">
+            <span class="img-label">Photo 4</span>
+          </div>
+          <div class="photo-add">+</div>
+        </div>
+
+        <div style="background:#F8F8F8; border-radius:12px; padding:12px; margin-bottom:8px;">
+          <div style="font-size:11px; color:#AAA; margin-bottom:4px;">Légende de ta photo principale</div>
+          <div style="font-size:14px; color:#CCC; font-style:italic;">"Ajoute une légende..."</div>
+        </div>
+
+        <button class="btn btn-primary" onclick="goTo('s6')" style="margin-top:16px;">Continuer</button>
+      </div>
+    </div>
+
+    <!-- S6 PROMPTS -->
+    <div class="screen" id="s6">
+      <div class="top-bar">
+        <div class="back-btn" onclick="goTo('s5')">←</div>
+        <div class="top-title">Mon profil</div>
+        <div style="font-size:13px; color:#999; font-weight:500;">2/3</div>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-bar"><div class="progress-fill" style="width:75%"></div></div>
+      </div>
+      <div class="scroll-area" style="padding-top:16px;">
+        <div class="section-title" style="margin-bottom:4px;">Qui es-tu vraiment ?</div>
+        <div class="section-sub" style="margin-bottom:20px;">Réponds à 3 questions — ce sont elles qui feront la différence ✨</div>
+
+        <div class="prompt-card">
+          <div class="prompt-q">On deviendrait vite amies si...</div>
+          <div class="prompt-empty">Ta réponse ici...</div>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-q">Le week-end idéal pour moi c'est...</div>
+          <div class="prompt-a">"Une rando le matin et un bon resto le soir 🏔️"</div>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-q">Ma passion inavouable c'est...</div>
+          <div class="prompt-empty">Ta réponse ici...</div>
+        </div>
+
+        <div style="background:#F5F5F5; border-radius:12px; padding:14px; margin-top:8px; text-align:center;">
+          <div style="font-size:13px; color:#AAA;">+ Choisir d'autres questions</div>
+        </div>
+
+        <button class="btn btn-primary" onclick="goTo('s7')" style="margin-top:20px;">Continuer</button>
+      </div>
+    </div>
+
+    <!-- S7 CRITÈRES -->
+    <div class="screen" id="s7">
+      <div class="top-bar">
+        <div class="back-btn" onclick="goTo('s6')">←</div>
+        <div class="top-title">Mon profil</div>
+        <div style="font-size:13px; color:#999; font-weight:500;">3/3</div>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-bar"><div class="progress-fill" style="width:90%"></div></div>
+      </div>
+      <div class="scroll-area" style="padding-top:16px;">
+        <div class="section-title" style="margin-bottom:4px;">Tes préférences</div>
+        <div class="section-sub" style="margin-bottom:24px;">Pour qu'on te propose les bonnes personnes</div>
+
+        <div style="margin-bottom:20px;">
+          <div style="font-size:13px; font-weight:600; color:#333; margin-bottom:10px;">Ma ville</div>
+          <input class="input-field" placeholder="Ex : Paris, Lyon, Bordeaux..." readonly>
+        </div>
+
+        <div style="margin-bottom:20px;">
+          <div style="font-size:13px; font-weight:600; color:#333; margin-bottom:10px;">Mon âge · <span style="font-weight:400; color:#999;">24 ans</span></div>
+          <div style="height:4px; background:#E0E0E0; border-radius:4px; position:relative;">
+            <div style="height:4px; width:40%; background:#333; border-radius:4px;"></div>
+            <div style="width:18px; height:18px; background:#333; border-radius:9px; position:absolute; left:40%; top:-7px; border:2px solid white; box-shadow:0 2px 6px rgba(0,0,0,0.2);"></div>
+          </div>
+        </div>
+
+        <div style="margin-bottom:20px;">
+          <div style="font-size:13px; font-weight:600; color:#333; margin-bottom:10px;">Mes passions</div>
+          <div style="display:flex; flex-wrap:wrap; gap:8px;">
+            <span class="tag tag-filled">Cinéma</span>
+            <span class="tag tag-filled">Yoga</span>
+            <span class="tag tag-outline">Randonnée</span>
+            <span class="tag tag-outline">Lecture</span>
+            <span class="tag tag-outline">Cuisine</span>
+            <span class="tag tag-outline">Musique</span>
+            <span class="tag tag-outline">Voyage</span>
+            <span class="tag tag-outline">Sport</span>
+            <span class="tag tag-outline">Art</span>
+            <span class="tag tag-outline">Photo</span>
+          </div>
+        </div>
+
+        <div style="margin-bottom:24px;">
+          <div style="font-size:13px; font-weight:600; color:#333; margin-bottom:10px;">Mes sorties préférées</div>
+          <div style="display:flex; flex-wrap:wrap; gap:8px;">
+            <span class="tag tag-filled">Restos</span>
+            <span class="tag tag-filled">Expos</span>
+            <span class="tag tag-outline">Concerts</span>
+            <span class="tag tag-outline">Parcs</span>
+            <span class="tag tag-outline">Bars</span>
+            <span class="tag tag-outline">Musées</span>
+          </div>
+        </div>
+
+        <button class="btn btn-primary" onclick="goTo('s8')">Voir mon profil</button>
+      </div>
+    </div>
+
+    <!-- S8 APERÇU PROFIL -->
+    <div class="screen" id="s8">
+      <div class="profile-detail-photo">
+        <div style="position:absolute;inset:0;background:#C8D8C0;"></div>
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+          <span style="font-size:13px;color:rgba(60,100,70,0.4);font-style:italic;">Ta photo</span>
+        </div>
+        <div style="position:absolute; top:12px; left:20px; right:20px; display:flex; justify-content:space-between; align-items:center;">
+          <div class="back-btn" style="background:rgba(255,255,255,0.9);" onclick="goTo('s7')">←</div>
+          <div style="font-size:13px; font-weight:600; color:white; background:rgba(0,0,0,0.3); padding:6px 14px; border-radius:20px;">Aperçu</div>
+        </div>
+        <div style="position:absolute;bottom:0;left:0;right:0;height:6px;background:rgba(80,130,100,0.8);"></div>
+        <div class="profile-detail-overlay" style="background:linear-gradient(transparent, rgba(80,130,100,0.6));">
+          <div style="font-size:22px; font-weight:700; color:white;">Léa, 24 ans</div>
+          <div style="font-size:13px; color:rgba(255,255,255,0.8); margin-top:2px;">📍 Paris</div>
+          <div class="certified-badge" style="background:rgba(80,130,100,0.4);">✓ Certifiée</div>
+        </div>
+      </div>
+
+      <div class="scroll-area" style="padding-top:16px;">
+        <div style="font-size:15px;font-weight:700;color:rgb(80,130,100);font-style:italic;margin-bottom:16px;">"On deviendrait vite amies si tu aimes les balades et les bons cafés ☕"</div>
+
+        <div class="prompt-card" style="margin-top:4px;">
+          <div class="prompt-q">Le week-end idéal pour moi c'est...</div>
+          <div class="prompt-a">"Une rando le matin et un bon resto le soir 🏔️"</div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0;">
+          <div class="img-placeholder" style="height:100px;"></div>
+          <div class="img-placeholder" style="height:100px;"></div>
+        </div>
+
+        <div style="display:flex; flex-wrap:wrap; gap:6px; margin:12px 0;">
+          <span style="padding:6px 14px;border-radius:20px;font-size:13px;font-weight:500;border:1.5px solid rgba(80,130,100,0.4);color:rgb(80,130,100);background:rgba(80,130,100,0.06);">Cinéma</span>
+          <span style="padding:6px 14px;border-radius:20px;font-size:13px;font-weight:500;border:1.5px solid rgba(80,130,100,0.4);color:rgb(80,130,100);background:rgba(80,130,100,0.06);">Yoga</span>
+          <span style="padding:6px 14px;border-radius:20px;font-size:13px;font-weight:500;border:1.5px solid rgba(80,130,100,0.4);color:rgb(80,130,100);background:rgba(80,130,100,0.06);">Restos</span>
+          <span style="padding:6px 14px;border-radius:20px;font-size:13px;font-weight:500;border:1.5px solid rgba(80,130,100,0.4);color:rgb(80,130,100);background:rgba(80,130,100,0.06);">Expos</span>
+        </div>
+
+        <button onclick="goTo('s14')" style="width:100%;padding:16px;border-radius:14px;font-size:16px;font-weight:600;border:none;background:rgb(80,130,100);color:white;margin-top:8px;cursor:pointer;">C'est parti ! 🎉</button>
+      </div>
+    </div>
+
+    <!-- S9 RENCONTRER -->
+    <div class="screen" id="s9">
+      <div class="top-bar">
+        <div style="font-size:20px; font-weight:800; color:#1A1A1A; letter-spacing:-0.5px;">GIRLS</div>
+        <div style="display:flex; gap:8px;">
+          <div style="width:36px;height:36px;background:#F5F5F5;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;">⚙</div>
+        </div>
+      </div>
+
+      <div class="scroll-area" style="padding: 0 16px 16px;">
+
+        <!-- CARTE 1 — filtre violet -->
+        <div onclick="goTo('s10')" style="cursor:pointer; position:relative; border-radius:20px; overflow:hidden; margin-bottom:12px; height:220px;">
+          <div style="position:absolute;inset:0;background:#E0E0E0;"></div>
+          <div style="position:absolute;inset:0;background:rgba(120,80,160,0.72);"></div>
+          <div style="position:absolute;inset:0;padding:20px;display:flex;flex-direction:column;justify-content:space-between;">
+            <div style="display:flex;justify-content:flex-end;">
+              <div style="background:rgba(255,255,255,0.2);color:white;font-size:11px;padding:3px 10px;border-radius:20px;">✓ Certifiée</div>
+            </div>
+            <div>
+              <div style="font-size:20px;font-weight:700;color:white;line-height:1.3;margin-bottom:12px;">"Je cherche quelqu'un pour tester tous les nouveaux restos du 10e 🍜"</div>
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <div>
+                  <div style="font-size:14px;font-weight:600;color:white;">Sophie · 26 ans · Paris</div>
+                  <div style="display:flex;gap:6px;margin-top:4px;">
+                    <span style="background:rgba(255,255,255,0.2);color:white;font-size:10px;padding:2px 8px;border-radius:20px;">Cinéma</span>
+                    <span style="background:rgba(255,255,255,0.2);color:white;font-size:10px;padding:2px 8px;border-radius:20px;">Yoga</span>
+                  </div>
+                </div>
+                <div style="font-size:11px;color:rgba(255,255,255,0.7);">Voir →</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARTE 2 — filtre terracotta -->
+        <div onclick="goTo('s10b')" style="cursor:pointer;position:relative;border-radius:20px;overflow:hidden;margin-bottom:12px;height:220px;">
+          <div style="position:absolute;inset:0;background:#E0E0E0;"></div>
+          <div style="position:absolute;inset:0;background:rgba(180,90,60,0.72);"></div>
+          <div style="position:absolute;inset:0;padding:20px;display:flex;flex-direction:column;justify-content:space-between;">
+            <div></div>
+            <div>
+              <div style="font-size:20px;font-weight:700;color:white;line-height:1.3;margin-bottom:12px;">"Nouvelle à Lyon, quelqu'un pour un café et une bonne balade ? ☕"</div>
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <div>
+                  <div style="font-size:14px;font-weight:600;color:white;">Inès · 23 ans · Lyon</div>
+                  <div style="display:flex;gap:6px;margin-top:4px;">
+                    <span style="background:rgba(255,255,255,0.2);color:white;font-size:10px;padding:2px 8px;border-radius:20px;">Lecture</span>
+                    <span style="background:rgba(255,255,255,0.2);color:white;font-size:10px;padding:2px 8px;border-radius:20px;">Randonnée</span>
+                  </div>
+                </div>
+                <div style="font-size:11px;color:rgba(255,255,255,0.7);">Voir →</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <!-- CARTE 3 — filtre vert sauge -->
+        <div style="position:relative;border-radius:20px;overflow:hidden;margin-bottom:12px;height:220px;">
+          <div style="position:absolute;inset:0;background:#E0E0E0;"></div>
+          <div style="position:absolute;inset:0;background:rgba(80,130,100,0.72);"></div>
+          <div style="position:absolute;inset:0;padding:20px;display:flex;flex-direction:column;justify-content:space-between;">
+            <div style="display:flex;justify-content:flex-end;">
+              <div style="background:rgba(255,255,255,0.2);color:white;font-size:11px;padding:3px 10px;border-radius:20px;">✓ Certifiée</div>
+            </div>
+            <div>
+              <div style="font-size:20px;font-weight:700;color:white;line-height:1.3;margin-bottom:12px;">"Ma passion inavouable c'est regarder des docu-crimes à 23h 🧀"</div>
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <div>
+                  <div style="font-size:14px;font-weight:600;color:white;">Camille · 25 ans · Paris</div>
+                  <div style="display:flex;gap:6px;margin-top:4px;">
+                    <span style="background:rgba(255,255,255,0.2);color:white;font-size:10px;padding:2px 8px;border-radius:20px;">Séries</span>
+                    <span style="background:rgba(255,255,255,0.2);color:white;font-size:10px;padding:2px 8px;border-radius:20px;">Cuisine</span>
+                  </div>
+                </div>
+                <div style="font-size:11px;color:rgba(255,255,255,0.7);">Voir →</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARTE 4 — filtre bleu nuit -->
+        <div style="position:relative;border-radius:20px;overflow:hidden;height:220px;">
+          <div style="position:absolute;inset:0;background:#E0E0E0;"></div>
+          <div style="position:absolute;inset:0;background:rgba(40,70,130,0.72);"></div>
+          <div style="position:absolute;inset:0;padding:20px;display:flex;flex-direction:column;justify-content:space-between;">
+            <div></div>
+            <div>
+              <div style="font-size:20px;font-weight:700;color:white;line-height:1.3;margin-bottom:12px;">"On deviendrait vite amies si tu aimes les expos et les mercredis improvisés 🎨"</div>
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <div>
+                  <div style="font-size:14px;font-weight:600;color:white;">Marie · 27 ans · Paris</div>
+                  <div style="display:flex;gap:6px;margin-top:4px;">
+                    <span style="background:rgba(255,255,255,0.2);color:white;font-size:10px;padding:2px 8px;border-radius:20px;">Art</span>
+                    <span style="background:rgba(255,255,255,0.2);color:white;font-size:10px;padding:2px 8px;border-radius:20px;">Photo</span>
+                  </div>
+                </div>
+                <div style="font-size:11px;color:rgba(255,255,255,0.7);">Voir →</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="bottom-nav">
+        <div class="nav-item">
+          <div class="nav-icon active-icon"></div>
+          <div class="nav-label active-label">Rencontrer</div>
+        </div>
+        <div class="nav-item" onclick="goTo('s16')">
+          <div class="nav-icon"></div>
+          <div class="nav-label">Sortir</div>
+        </div>
+        <div class="nav-item" onclick="goTo('s22')">
+          <div class="nav-icon"></div>
+          <div class="nav-label">Messages</div>
+        </div>
+        <div class="nav-item" onclick="goTo('s21')">
+          <div class="nav-icon"></div>
+          <div class="nav-label">Profil</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- S10 PROFIL DÉTAILLÉ -->
+    <div class="screen" id="s10">
+      <div class="profile-detail-photo">
+        <div style="position:absolute;inset:0;background:#D8C8E8;"></div>
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+          <span style="font-size:13px;color:rgba(100,60,140,0.5);font-style:italic;">Photo sans filtre</span>
+        </div>
+        <div style="position:absolute; top:12px; left:20px;">
+          <div class="back-btn" style="background:rgba(255,255,255,0.9);" onclick="goTo('s14')">←</div>
+        </div>
+        <!-- Couleur signature en bas de la photo -->
+        <div style="position:absolute;bottom:0;left:0;right:0;height:6px;background:rgba(120,80,160,0.8);"></div>
+        <div class="profile-detail-overlay" style="background:linear-gradient(transparent, rgba(120,80,160,0.6));">
+          <div style="font-size:22px; font-weight:700; color:white;">Sophie, 26 ans</div>
+          <div style="font-size:13px; color:rgba(255,255,255,0.8);">📍 Paris · 2 km</div>
+          <div class="certified-badge" style="background:rgba(120,80,160,0.4);">✓ Certifiée</div>
+        </div>
+      </div>
+
+      <div class="scroll-area" style="padding-top:16px;">
+        <!-- Accroche avec couleur signature -->
+        <div style="font-size:15px;font-weight:700;color:rgb(120,80,160);font-style:italic;margin-bottom:16px;">"Je cherche quelqu'un pour tester tous les nouveaux restos du 10e 🍜"</div>
+
+        <div class="prompt-card">
+          <div class="prompt-q">On deviendrait vite amies si...</div>
+          <div class="prompt-a">"Tu aimes les balades improvisées et les picnics de dernière minute"</div>
+        </div>
+
+        <!-- GALERIE PHOTOS -->
+        <div style="margin: 16px 0;">
+          <div style="font-size:12px;font-weight:600;color:#AAA;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">Sa vie en photos</div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">
+            <div>
+              <div class="img-placeholder" style="height:120px;"></div>
+              <div style="font-size:11px;color:#AAA;font-style:italic;margin-top:4px;">"Mon chat Mochi 🐱"</div>
+            </div>
+            <div>
+              <div class="img-placeholder" style="height:120px;"></div>
+              <div style="font-size:11px;color:#AAA;font-style:italic;margin-top:4px;">"Brunch du dimanche ☀️"</div>
+            </div>
+          </div>
+
+          <div style="margin-bottom:8px;">
+            <div class="img-placeholder" style="height:140px;"></div>
+            <div style="font-size:11px;color:#AAA;font-style:italic;margin-top:4px;">"Ma rando préférée en Bretagne 🌊"</div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+            <div>
+              <div class="img-placeholder" style="height:100px;"></div>
+              <div style="font-size:11px;color:#AAA;font-style:italic;margin-top:4px;">"Expo Pompidou 🎨"</div>
+            </div>
+            <div>
+              <div class="img-placeholder" style="height:100px;"></div>
+              <div style="font-size:11px;color:#AAA;font-style:italic;margin-top:4px;">"Mon coin lecture 📚"</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-q">Ma passion inavouable c'est...</div>
+          <div class="prompt-a">"Regarder des docu-crimes à 23h en mangeant du fromage 🧀"</div>
+        </div>
+
+        <!-- Tags avec couleur signature -->
+        <div style="display:flex; flex-wrap:wrap; gap:6px; margin:12px 0 20px;">
+          <span style="padding:6px 14px;border-radius:20px;font-size:13px;font-weight:500;border:1.5px solid rgba(120,80,160,0.4);color:rgb(120,80,160);background:rgba(120,80,160,0.06);">Cinéma</span>
+          <span style="padding:6px 14px;border-radius:20px;font-size:13px;font-weight:500;border:1.5px solid rgba(120,80,160,0.4);color:rgb(120,80,160);background:rgba(120,80,160,0.06);">Yoga</span>
+          <span style="padding:6px 14px;border-radius:20px;font-size:13px;font-weight:500;border:1.5px solid rgba(120,80,160,0.4);color:rgb(120,80,160);background:rgba(120,80,160,0.06);">Restos</span>
+          <span style="padding:6px 14px;border-radius:20px;font-size:13px;font-weight:500;border:1.5px solid rgba(120,80,160,0.4);color:rgb(120,80,160);background:rgba(120,80,160,0.06);">Expos</span>
+          <span style="padding:6px 14px;border-radius:20px;font-size:13px;font-weight:500;border:1.5px solid rgba(120,80,160,0.4);color:rgb(120,80,160);background:rgba(120,80,160,0.06);">Lecture</span>
+        </div>
+
+        <!-- Bouton avec couleur signature -->
+        <button onclick="goTo('s11')" style="width:100%;padding:16px;border-radius:14px;font-size:16px;font-weight:600;border:none;background:rgb(120,80,160);color:white;margin-bottom:20px;cursor:pointer;">🌸 Coup de cœur</button>
+      </div>
+    </div>
+
+    <!-- S10B PROFIL DÉTAILLÉ — TERRACOTTA -->
+    <div class="screen" id="s10b">
+      <div class="profile-detail-photo">
+        <div style="position:absolute;inset:0;background:#E8C8B8;"></div>
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+          <span style="font-size:13px;color:rgba(140,70,40,0.4);font-style:italic;">Photo sans filtre</span>
+        </div>
+        <div style="position:absolute; top:12px; left:20px;">
+          <div class="back-btn" style="background:rgba(255,255,255,0.9);" onclick="goTo('s14')">←</div>
+        </div>
+        <div style="position:absolute;bottom:0;left:0;right:0;height:6px;background:rgba(180,90,60,0.8);"></div>
+        <div class="profile-detail-overlay" style="background:linear-gradient(transparent, rgba(180,90,60,0.6));">
+          <div style="font-size:22px; font-weight:700; color:white;">Inès, 23 ans</div>
+          <div style="font-size:13px; color:rgba(255,255,255,0.8);">📍 Lyon · 1 km</div>
+          <div class="certified-badge" style="background:rgba(180,90,60,0.4);">✓ Certifiée</div>
+        </div>
+      </div>
+
+      <div class="scroll-area" style="padding-top:16px;">
+        <div style="font-size:15px;font-weight:700;color:rgb(180,90,60);font-style:italic;margin-bottom:16px;">"Nouvelle à Lyon, quelqu'un pour un café et une bonne balade ? ☕"</div>
+
+        <div class="prompt-card">
+          <div class="prompt-q">On deviendrait vite amies si...</div>
+          <div class="prompt-a">"Tu aimes partir sans plan et rentrer avec des histoires à raconter"</div>
+        </div>
+
+        <!-- GALERIE -->
+        <div style="margin:16px 0;">
+          <div style="font-size:12px;font-weight:600;color:#AAA;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">Sa vie en photos</div>
+
+          <div style="margin-bottom:8px;">
+            <div class="img-placeholder" style="height:150px;"></div>
+            <div style="font-size:11px;color:#AAA;font-style:italic;margin-top:4px;">"Les quais de Saône le matin 🌅"</div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">
+            <div>
+              <div class="img-placeholder" style="height:110px;"></div>
+              <div style="font-size:11px;color:#AAA;font-style:italic;margin-top:4px;">"Mon chien Kiwi 🐶"</div>
+            </div>
+            <div>
+              <div class="img-placeholder" style="height:110px;"></div>
+              <div style="font-size:11px;color:#AAA;font-style:italic;margin-top:4px;">"Marché du dimanche 🧺"</div>
+            </div>
+          </div>
+
+          <div>
+            <div class="img-placeholder" style="height:120px;"></div>
+            <div style="font-size:11px;color:#AAA;font-style:italic;margin-top:4px;">"Ma collection de plantes 🌿"</div>
+          </div>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-q">Ma passion inavouable c'est...</div>
+          <div class="prompt-a">"Refaire la déco de ma chambre tous les 3 mois 🛋️"</div>
+        </div>
+
+        <div style="display:flex; flex-wrap:wrap; gap:6px; margin:12px 0 20px;">
+          <span style="padding:6px 14px;border-radius:20px;font-size:13px;font-weight:500;border:1.5px solid rgba(180,90,60,0.4);color:rgb(180,90,60);background:rgba(180,90,60,0.06);">Randonnée</span>
+          <span style="padding:6px 14px;border-radius:20px;font-size:13px;font-weight:500;border:1.5px solid rgba(180,90,60,0.4);color:rgb(180,90,60);background:rgba(180,90,60,0.06);">Lecture</span>
+          <span style="padding:6px 14px;border-radius:20px;font-size:13px;font-weight:500;border:1.5px solid rgba(180,90,60,0.4);color:rgb(180,90,60);background:rgba(180,90,60,0.06);">Cuisine</span>
+          <span style="padding:6px 14px;border-radius:20px;font-size:13px;font-weight:500;border:1.5px solid rgba(180,90,60,0.4);color:rgb(180,90,60);background:rgba(180,90,60,0.06);">Déco</span>
+        </div>
+
+        <button onclick="goTo('s11')" style="width:100%;padding:16px;border-radius:14px;font-size:16px;font-weight:600;border:none;background:rgb(180,90,60);color:white;margin-bottom:20px;cursor:pointer;">🌸 Coup de cœur</button>
+      </div>
+    </div>
+
+    <!-- S11 COUP DE CŒUR ! -->
+    <div class="screen" id="s11">
+      <div class="celebration">
+        <div style="font-size:48px; margin-bottom:8px;">🌸</div>
+        <div class="celebration-avatars">
+          <div class="cel-avatar"></div>
+          <div class="cel-avatar"></div>
+        </div>
+        <div class="celebration-title">Coup de cœur mutuel !</div>
+        <div class="celebration-sub">Toi et Sophie avez toutes les deux eu un coup de cœur 🌸<br>C'est le début d'une belle amitié !</div>
+
+        <div style="width:100%; margin-top:16px; display:flex; flex-direction:column; gap:12px;">
+          <button class="btn btn-primary" onclick="goTo('s13')">Lui envoyer un message</button>
+          <button class="btn btn-secondary" onclick="goTo('s14')">Continuer à explorer</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- S12 CONVERSATIONS -->
+    <div class="screen" id="s12">
+      <div class="top-bar">
+        <div class="top-title">Messages</div>
+        <div style="width:36px;height:36px;background:#F5F5F5;border-radius:10px;"></div>
+      </div>
+
+      <div style="padding: 8px 20px 12px; flex-shrink:0;">
+        <input class="input-field" placeholder="Rechercher..." readonly style="background:#F5F5F5; border-color:transparent;">
+      </div>
+
+      <div class="scroll-area">
+        <div class="chat-item" onclick="goTo('s13')">
+          <div class="chat-avatar"></div>
+          <div class="chat-info">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <div class="chat-name">Sophie</div>
+              <div class="chat-time">14:32</div>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:2px;">
+              <div class="chat-preview">Trop contente d'avoir matché !</div>
+              <div class="unread-dot"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="chat-item">
+          <div class="chat-avatar"></div>
+          <div class="chat-info">
+            <div style="display:flex; justify-content:space-between;">
+              <div class="chat-name">Camille</div>
+              <div class="chat-time">Hier</div>
+            </div>
+            <div class="chat-preview" style="margin-top:2px;">On se retrouve samedi alors ? 😊</div>
+          </div>
+        </div>
+
+        <div class="chat-item">
+          <div class="chat-avatar"></div>
+          <div class="chat-info">
+            <div style="display:flex; justify-content:space-between;">
+              <div class="chat-name">Inès</div>
+              <div class="chat-time">Lun</div>
+            </div>
+            <div class="chat-preview" style="margin-top:2px;">Super idée pour le brunch !</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="bottom-nav">
+        <div class="nav-item" onclick="goTo('s14')">
+          <div class="nav-icon"></div>
+          <div class="nav-label">Rencontrer</div>
+        </div>
+        <div class="nav-item" onclick="goTo('s16')">
+          <div class="nav-icon"></div>
+          <div class="nav-label">Sortir</div>
+        </div>
+        <div class="nav-item">
+          <div class="nav-icon active-icon"></div>
+          <div class="nav-label active-label">Messages</div>
+        </div>
+        <div class="nav-item" onclick="goTo('s21')">
+          <div class="nav-icon"></div>
+          <div class="nav-label">Profil</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- S13 CHAT -->
+    <div class="screen" id="s13">
+      <div class="chat-header">
+        <div class="back-btn" onclick="goTo('s22')">←</div>
+        <div class="chat-avatar-sm"></div>
+        <div style="flex:1;">
+          <div style="font-size:15px; font-weight:600; color:#1A1A1A;">Sophie</div>
+          <div style="font-size:12px; color:#AAA;">En ligne</div>
+        </div>
+        <div style="display:flex;gap:8px;">
+          <div onclick="goTo('s25')" style="width:36px;height:36px;background:#F5F5F5;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;">📅</div>
+          <div onclick="goTo('s24')" style="width:36px;height:36px;background:#F5F5F5;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;">🗂️</div>
+        </div>
+      </div>
+
+      <div class="scroll-area" style="display:flex; flex-direction:column; padding-top:16px; padding-bottom:8px;">
+        <div class="msg-time">Aujourd'hui 14:30</div>
+        <div class="msg-bubble msg-them">Coucou ! Trop contente d'avoir matché 🌸</div>
+        <div class="msg-bubble msg-me" style="align-self:flex-end;">Moi aussi ! J'ai vu que tu aimais le yoga, tu vas où à Paris ?</div>
+        <div class="msg-bubble msg-them">Je vais souvent au studio Yuz dans le 11e, c'est top ! Et toi ?</div>
+        <div class="msg-bubble msg-me" style="align-self:flex-end;">Jamais essayé celui-là ! On pourrait y aller ensemble un soir ?</div>
+        <div class="msg-bubble msg-them">Carrément ! Samedi 18h ça te va ? 😊</div>
+
+        <!-- POPUP DÉTECTION RDV -->
+        <div style="background:#F0F0F0; border-radius:14px; padding:12px 14px; margin:8px 0; display:flex; align-items:center; gap:10px;">
+          <div style="font-size:20px;">📅</div>
+          <div style="flex:1;">
+            <div style="font-size:12px; font-weight:600; color:#333;">On dirait que vous planifiez quelque chose !</div>
+            <div style="font-size:11px; color:#999; margin-top:2px;">Samedi · 18h · Studio de yoga</div>
+          </div>
+          <div style="font-size:11px; color:#333; font-weight:600; white-space:nowrap;">Noter ›</div>
+        </div>
+
+      </div>
+
+      <div class="chat-input-wrap">
+        <div class="chat-input">Écris un message...</div>
+        <div class="send-btn">→</div>
+      </div>
+    </div>
+
+    <!-- S14 RENCONTRER — SOUS-ONGLETS -->
+    <div class="screen" id="s14">
+      <div class="top-bar">
+        <div style="font-size:20px; font-weight:800; color:#1A1A1A; letter-spacing:-0.5px;">GIRLS</div>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <div onclick="goTo('s27')" style="position:relative;width:36px;height:36px;background:#F5F5F5;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer;">
+            🤍
+            <div style="position:absolute;top:-4px;right:-4px;background:#E8184A;color:white;font-size:10px;font-weight:700;width:18px;height:18px;border-radius:9px;display:flex;align-items:center;justify-content:center;border:2px solid white;">7</div>
+          </div>
+          <div style="width:36px;height:36px;background:#F5F5F5;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;">⚙</div>
+        </div>
+      </div>
+
+      <!-- FILTRES -->
+      <div style="display:flex; padding:0 20px 12px; gap:8px; flex-shrink:0; border-bottom:1px solid #F0F0F0;">
+        <div style="flex:1;text-align:center;padding:8px;border-radius:10px;background:#333;color:white;font-size:13px;font-weight:600;">Rencontrer</div>
+        <div onclick="goTo('s27')" style="flex:1;text-align:center;padding:8px;border-radius:10px;background:#F5F5F5;color:#999;font-size:13px;font-weight:500;cursor:pointer;position:relative;">
+          🤍
+          <span style="position:absolute;top:4px;right:8px;background:#E8184A;color:white;font-size:9px;font-weight:700;padding:1px 5px;border-radius:10px;">7</span>
+        </div>
+        <div onclick="goTo('s15')" style="flex:1;text-align:center;padding:8px;border-radius:10px;background:#F5F5F5;color:#999;font-size:13px;font-weight:500;cursor:pointer;">Mes Copines</div>
+      </div>
+
+      <div class="scroll-area" style="padding:12px 16px 16px;">
+        <!-- CARTE 1 -->
+        <div onclick="goTo('s10')" style="cursor:pointer;position:relative;border-radius:20px;overflow:hidden;margin-bottom:12px;height:220px;">
+          <div style="position:absolute;inset:0;background:#E0E0E0;"></div>
+          <div style="position:absolute;inset:0;background:rgba(120,80,160,0.72);"></div>
+          <div style="position:absolute;inset:0;padding:20px;display:flex;flex-direction:column;justify-content:space-between;">
+            <div style="display:flex;justify-content:flex-end;"><div style="background:rgba(255,255,255,0.2);color:white;font-size:11px;padding:3px 10px;border-radius:20px;">✓ Certifiée</div></div>
+            <div>
+              <div style="font-size:20px;font-weight:700;color:white;line-height:1.3;margin-bottom:12px;">"Je cherche quelqu'un pour tester tous les nouveaux restos du 10e 🍜"</div>
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <div>
+                  <div style="font-size:14px;font-weight:600;color:white;">Sophie · 26 ans · Paris</div>
+                  <div style="display:flex;gap:6px;margin-top:4px;">
+                    <span style="background:rgba(255,255,255,0.2);color:white;font-size:10px;padding:2px 8px;border-radius:20px;">Cinéma</span>
+                    <span style="background:rgba(255,255,255,0.2);color:white;font-size:10px;padding:2px 8px;border-radius:20px;">Yoga</span>
+                  </div>
+                </div>
+                <div style="font-size:11px;color:rgba(255,255,255,0.7);">Voir →</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- CARTE 2 -->
+        <div onclick="goTo('s10b')" style="cursor:pointer;position:relative;border-radius:20px;overflow:hidden;margin-bottom:12px;height:220px;">
+          <div style="position:absolute;inset:0;background:#E0E0E0;"></div>
+          <div style="position:absolute;inset:0;background:rgba(180,90,60,0.72);"></div>
+          <div style="position:absolute;inset:0;padding:20px;display:flex;flex-direction:column;justify-content:space-between;">
+            <div></div>
+            <div>
+              <div style="font-size:20px;font-weight:700;color:white;line-height:1.3;margin-bottom:12px;">"Nouvelle à Lyon, quelqu'un pour un café et une bonne balade ? ☕"</div>
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <div>
+                  <div style="font-size:14px;font-weight:600;color:white;">Inès · 23 ans · Lyon</div>
+                  <div style="display:flex;gap:6px;margin-top:4px;">
+                    <span style="background:rgba(255,255,255,0.2);color:white;font-size:10px;padding:2px 8px;border-radius:20px;">Lecture</span>
+                    <span style="background:rgba(255,255,255,0.2);color:white;font-size:10px;padding:2px 8px;border-radius:20px;">Randonnée</span>
+                  </div>
+                </div>
+                <div style="font-size:11px;color:rgba(255,255,255,0.7);">Voir →</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- CARTE 3 -->
+        <div style="position:relative;border-radius:20px;overflow:hidden;height:220px;">
+          <div style="position:absolute;inset:0;background:#E0E0E0;"></div>
+          <div style="position:absolute;inset:0;background:rgba(80,130,100,0.72);"></div>
+          <div style="position:absolute;inset:0;padding:20px;display:flex;flex-direction:column;justify-content:space-between;">
+            <div style="display:flex;justify-content:flex-end;"><div style="background:rgba(255,255,255,0.2);color:white;font-size:11px;padding:3px 10px;border-radius:20px;">✓ Certifiée</div></div>
+            <div>
+              <div style="font-size:20px;font-weight:700;color:white;line-height:1.3;margin-bottom:12px;">"Ma passion inavouable c'est regarder des docu-crimes à 23h 🧀"</div>
+              <div style="font-size:14px;font-weight:600;color:white;">Camille · 25 ans · Paris</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bottom-nav">
+        <div class="nav-item"><div class="nav-icon active-icon"></div><div class="nav-label active-label">Rencontrer</div></div>
+        <div class="nav-item" onclick="goTo('s16')"><div class="nav-icon"></div><div class="nav-label">Sortir</div></div>
+        <div class="nav-item" onclick="goTo('s22')"><div class="nav-icon"></div><div class="nav-label">Messages</div></div>
+        <div class="nav-item" onclick="goTo('s21')"><div class="nav-icon"></div><div class="nav-label">Profil</div></div>
+      </div>
+    </div>
+
+    <!-- S15 MES COPINES -->
+    <div class="screen" id="s15">
+      <div class="top-bar">
+        <div style="font-size:20px;font-weight:800;color:#1A1A1A;letter-spacing:-0.5px;">GIRLS</div>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <div onclick="goTo('s27')" style="position:relative;width:36px;height:36px;background:#F5F5F5;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer;">
+            🤍
+            <div style="position:absolute;top:-4px;right:-4px;background:#E8184A;color:white;font-size:10px;font-weight:700;width:18px;height:18px;border-radius:9px;display:flex;align-items:center;justify-content:center;border:2px solid white;">7</div>
+          </div>
+          <div style="width:36px;height:36px;background:#F5F5F5;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;">⚙</div>
+        </div>
+      </div>
+
+      <!-- FILTRES -->
+      <div style="display:flex;padding:0 20px 12px;gap:8px;flex-shrink:0;border-bottom:1px solid #F0F0F0;">
+        <div onclick="goTo('s14')" style="flex:1;text-align:center;padding:8px;border-radius:10px;background:#F5F5F5;color:#999;font-size:13px;font-weight:500;cursor:pointer;">Rencontrer</div>
+        <div onclick="goTo('s27')" style="flex:1;text-align:center;padding:8px;border-radius:10px;background:#F5F5F5;color:#999;font-size:13px;font-weight:500;cursor:pointer;position:relative;">
+          🤍
+          <span style="position:absolute;top:4px;right:8px;background:#E8184A;color:white;font-size:9px;font-weight:700;padding:1px 5px;border-radius:10px;">7</span>
+        </div>
+        <div style="flex:1;text-align:center;padding:8px;border-radius:10px;background:#333;color:white;font-size:13px;font-weight:600;">Mes Copines</div>
+      </div>
+
+      <div class="scroll-area" style="padding:16px;">
+        <!-- BANDEAU 24H -->
+        <div style="background:#F5F5F5;border-radius:12px;padding:10px 14px;margin-bottom:16px;display:flex;align-items:center;gap:10px;">
+          <div style="font-size:18px;">⏱</div>
+          <div style="flex:1;">
+            <div style="font-size:12px;font-weight:600;color:#333;">Les photos disparaissent après 24h</div>
+            <div style="font-size:11px;color:#AAA;margin-top:1px;">Elles sont archivées dans ton profil → Mes souvenirs</div>
+          </div>
+        </div>
+
+        <!-- POST 1 -->
+        <div style="margin-bottom:24px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+            <div style="width:36px;height:36px;border-radius:18px;background:#C8A8E8;border:2px solid rgba(120,80,160,0.3);flex-shrink:0;"></div>
+            <div>
+              <div style="font-size:13px;font-weight:600;color:#1A1A1A;">Sophie</div>
+              <div style="font-size:11px;color:#AAA;">Il y a 2h · Paris</div>
+            </div>
+          </div>
+          <div class="img-placeholder" style="height:240px;border-radius:16px;margin-bottom:8px;"></div>
+          <div style="font-size:14px;color:#333;font-style:italic;">"Expo géniale au Palais de Tokyo ! Quelqu'un veut y aller ce week-end ? 🎨"</div>
+          <div style="display:flex;gap:16px;margin-top:8px;">
+            <div style="font-size:13px;color:#AAA;">🌸 12</div>
+            <div style="font-size:13px;color:#AAA;">💬 3 réponses</div>
+          </div>
+        </div>
+
+        <!-- POST 2 -->
+        <div style="margin-bottom:24px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+            <div style="width:36px;height:36px;border-radius:18px;background:#E8C8B8;border:2px solid rgba(180,90,60,0.3);flex-shrink:0;"></div>
+            <div>
+              <div style="font-size:13px;font-weight:600;color:#1A1A1A;">Inès</div>
+              <div style="font-size:11px;color:#AAA;">Hier · Lyon</div>
+            </div>
+          </div>
+          <div class="img-placeholder" style="height:200px;border-radius:16px;margin-bottom:8px;"></div>
+          <div style="font-size:14px;color:#333;font-style:italic;">"Les quais ce matin 🌅 La meilleure façon de commencer la journée"</div>
+          <div style="display:flex;gap:16px;margin-top:8px;">
+            <div style="font-size:13px;color:#AAA;">🌸 8</div>
+            <div style="font-size:13px;color:#AAA;">💬 1 réponse</div>
+          </div>
+        </div>
+
+        <!-- POST 3 -->
+        <div style="margin-bottom:24px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+            <div style="width:36px;height:36px;border-radius:18px;background:#C0D8C8;border:2px solid rgba(80,130,100,0.3);flex-shrink:0;"></div>
+            <div>
+              <div style="font-size:13px;font-weight:600;color:#1A1A1A;">Camille</div>
+              <div style="font-size:11px;color:#AAA;">Hier · Paris</div>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px;">
+            <div class="img-placeholder" style="height:140px;border-radius:12px;"></div>
+            <div class="img-placeholder" style="height:140px;border-radius:12px;"></div>
+          </div>
+          <div style="font-size:14px;color:#333;font-style:italic;">"Brunch du dimanche avec les filles 🥞☕"</div>
+          <div style="display:flex;gap:16px;margin-top:8px;">
+            <div style="font-size:13px;color:#AAA;">🌸 21</div>
+            <div style="font-size:13px;color:#AAA;">💬 5 réponses</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bottom-nav">
+        <div class="nav-item"><div class="nav-icon active-icon"></div><div class="nav-label active-label">Rencontrer</div></div>
+        <div class="nav-item" onclick="goTo('s16')"><div class="nav-icon"></div><div class="nav-label">Sortir</div></div>
+        <div class="nav-item" onclick="goTo('s22')"><div class="nav-icon"></div><div class="nav-label">Messages</div></div>
+        <div class="nav-item" onclick="goTo('s21')"><div class="nav-icon"></div><div class="nav-label">Profil</div></div>
+      </div>
+    </div>
+
+    <!-- S16 SORTIR — ACTIVITÉS -->
+    <div class="screen" id="s16">
+      <div class="top-bar">
+        <div style="font-size:20px;font-weight:800;color:#1A1A1A;letter-spacing:-0.5px;">Sortir</div>
+        <div onclick="goTo('s18')" style="width:36px;height:36px;background:#333;border-radius:10px;display:flex;align-items:center;justify-content:center;color:white;font-size:18px;cursor:pointer;">+</div>
+      </div>
+
+      <!-- SOUS-ONGLETS -->
+      <div style="display:flex;padding:0 20px 12px;gap:8px;flex-shrink:0;border-bottom:1px solid #F0F0F0;">
+        <div style="flex:1;text-align:center;padding:8px;border-radius:10px;background:#333;color:white;font-size:13px;font-weight:600;">Activités</div>
+        <div onclick="goTo('s19')" style="flex:1;text-align:center;padding:8px;border-radius:10px;background:#F5F5F5;color:#999;font-size:13px;font-weight:500;cursor:pointer;">Salons</div>
+      </div>
+
+      <div class="scroll-area" style="padding:16px;">
+
+        <!-- FILTRES -->
+        <div style="display:flex;gap:8px;margin-bottom:16px;overflow-x:auto;padding-bottom:4px;">
+          <span style="padding:6px 14px;border-radius:20px;font-size:12px;font-weight:600;background:#333;color:white;white-space:nowrap;">Toutes</span>
+          <span style="padding:6px 14px;border-radius:20px;font-size:12px;border:1px solid #DDD;color:#666;white-space:nowrap;">Ce week-end</span>
+          <span style="padding:6px 14px;border-radius:20px;font-size:12px;border:1px solid #DDD;color:#666;white-space:nowrap;">Restos</span>
+          <span style="padding:6px 14px;border-radius:20px;font-size:12px;border:1px solid #DDD;color:#666;white-space:nowrap;">Sport</span>
+          <span style="padding:6px 14px;border-radius:20px;font-size:12px;border:1px solid #DDD;color:#666;white-space:nowrap;">Culture</span>
+        </div>
+
+        <!-- ACTIVITÉ PARTENAIRE -->
+        <div style="background:#F8F8F8;border-radius:16px;padding:16px;margin-bottom:12px;border:1.5px solid #E0E0E0;position:relative;">
+          <div style="position:absolute;top:12px;right:12px;background:#333;color:white;font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;text-transform:uppercase;letter-spacing:0.5px;">Partenaire</div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+            <div style="width:40px;height:40px;border-radius:10px;background:#E8E8E8;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:20px;">🧘</div>
+            <div>
+              <div style="font-size:14px;font-weight:700;color:#1A1A1A;">Studio Yuz — Yoga</div>
+              <div style="font-size:12px;color:#AAA;">Paris 11e · Partenaire GIRLS</div>
+            </div>
+          </div>
+          <div style="font-size:13px;color:#666;margin-bottom:12px;">-20% pour toi et ta copine sur tous les cours du mois. Parfait pour une première sortie ensemble !</div>
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <span class="tag tag-outline" style="font-size:11px;padding:4px 10px;">Bien-être</span>
+            <button style="padding:8px 16px;border-radius:10px;background:#333;color:white;font-size:13px;font-weight:600;border:none;cursor:pointer;">Profiter de l'offre</button>
+          </div>
+        </div>
+
+        <!-- ACTIVITÉ 1 -->
+        <div style="background:#F8F8F8;border-radius:16px;padding:16px;margin-bottom:12px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+            <div style="width:32px;height:32px;border-radius:16px;background:#C8A8E8;flex-shrink:0;"></div>
+            <div style="flex:1;">
+              <div style="font-size:13px;font-weight:600;color:#1A1A1A;">Sophie</div>
+              <div style="font-size:11px;color:#AAA;">Paris 10e</div>
+            </div>
+            <div style="font-size:11px;color:#AAA;">Il y a 1h</div>
+          </div>
+          <div style="font-size:16px;font-weight:700;color:#1A1A1A;margin-bottom:6px;">Expo au Palais de Tokyo 🎨</div>
+          <div style="font-size:13px;color:#666;margin-bottom:12px;">Samedi 14h · Je cherche 1-2 filles pour découvrir l'expo Kader Attia. On pourrait prendre un verre après !</div>
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <div style="display:flex;gap:6px;">
+              <span class="tag tag-outline" style="font-size:11px;padding:4px 10px;">Culture</span>
+              <span class="tag tag-outline" style="font-size:11px;padding:4px 10px;">Samedi</span>
+            </div>
+            <button onclick="goTo('s16')" style="padding:8px 16px;border-radius:10px;background:#333;color:white;font-size:13px;font-weight:600;border:none;cursor:pointer;">Je viens !</button>
+          </div>
+        </div>
+
+        <!-- ACTIVITÉ 2 -->
+        <div style="background:#F8F8F8;border-radius:16px;padding:16px;margin-bottom:12px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+            <div style="width:32px;height:32px;border-radius:16px;background:#E8C8B8;flex-shrink:0;"></div>
+            <div style="flex:1;">
+              <div style="font-size:13px;font-weight:600;color:#1A1A1A;">Inès</div>
+              <div style="font-size:11px;color:#AAA;">Lyon 1er</div>
+            </div>
+            <div style="font-size:11px;color:#AAA;">Il y a 3h</div>
+          </div>
+          <div style="font-size:16px;font-weight:700;color:#1A1A1A;margin-bottom:6px;">Rando matinale en Beaujolais 🥾</div>
+          <div style="font-size:13px;color:#666;margin-bottom:12px;">Dimanche 8h · Départ depuis Lyon. Circuit de 12km, niveau facile. Pique-nique inclus !</div>
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <div style="display:flex;gap:6px;">
+              <span class="tag tag-outline" style="font-size:11px;padding:4px 10px;">Sport</span>
+              <span class="tag tag-outline" style="font-size:11px;padding:4px 10px;">Dimanche</span>
+            </div>
+            <button style="padding:8px 16px;border-radius:10px;background:#333;color:white;font-size:13px;font-weight:600;border:none;cursor:pointer;">Je viens !</button>
+          </div>
+        </div>
+
+        <!-- ACTIVITÉ 3 -->
+        <div style="background:#F8F8F8;border-radius:16px;padding:16px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+            <div style="width:32px;height:32px;border-radius:16px;background:#C0D8C8;flex-shrink:0;"></div>
+            <div style="flex:1;">
+              <div style="font-size:13px;font-weight:600;color:#1A1A1A;">Camille</div>
+              <div style="font-size:11px;color:#AAA;">Paris 11e</div>
+            </div>
+            <div style="font-size:11px;color:#AAA;">Hier</div>
+          </div>
+          <div style="font-size:16px;font-weight:700;color:#1A1A1A;margin-bottom:6px;">Brunch le dimanche ☕</div>
+          <div style="font-size:13px;color:#666;margin-bottom:12px;">Dimanche 11h · Nouveau café rue Oberkampf. 2 places disponibles !</div>
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <div style="display:flex;gap:6px;">
+              <span class="tag tag-outline" style="font-size:11px;padding:4px 10px;">Restos</span>
+              <span class="tag tag-outline" style="font-size:11px;padding:4px 10px;">Dimanche</span>
+            </div>
+            <button style="padding:8px 16px;border-radius:10px;background:#333;color:white;font-size:13px;font-weight:600;border:none;cursor:pointer;">Je viens !</button>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="bottom-nav">
+        <div class="nav-item" onclick="goTo('s14')"><div class="nav-icon"></div><div class="nav-label">Rencontrer</div></div>
+        <div class="nav-item"><div class="nav-icon active-icon"></div><div class="nav-label active-label">Sortir</div></div>
+        <div class="nav-item" onclick="goTo('s22')"><div class="nav-icon"></div><div class="nav-label">Messages</div></div>
+        <div class="nav-item" onclick="goTo('s21')"><div class="nav-icon"></div><div class="nav-label">Profil</div></div>
+      </div>
+    </div>
+
+    <!-- S17 GROUPE CHAT -->
+    <div class="screen" id="s17">
+      <div class="chat-header">
+        <div class="back-btn" onclick="goTo('s22')">←</div>
+        <div style="display:flex;">
+          <div style="width:36px;height:36px;border-radius:18px;background:#C8A8E8;border:2px solid white;"></div>
+          <div style="width:36px;height:36px;border-radius:18px;background:#E8C8B8;border:2px solid white;margin-left:-12px;"></div>
+          <div style="width:36px;height:36px;border-radius:18px;background:#C0D8C8;border:2px solid white;margin-left:-12px;"></div>
+        </div>
+        <div style="flex:1;margin-left:8px;">
+          <div style="font-size:15px;font-weight:600;color:#1A1A1A;">Amies Yoga Paris 🧘</div>
+          <div style="font-size:12px;color:#AAA;">Sophie, Inès, Camille + toi</div>
+        </div>
+      </div>
+
+      <div class="scroll-area" style="display:flex;flex-direction:column;padding:16px;gap:4px;">
+        <div class="msg-time">Aujourd'hui 14h</div>
+        <div style="display:flex;gap:8px;align-items:flex-end;margin-bottom:4px;">
+          <div style="width:24px;height:24px;border-radius:12px;background:#C8A8E8;flex-shrink:0;"></div>
+          <div class="msg-bubble msg-them">Vous avez vu le nouveau cours qui ouvre à République ? 🧘</div>
+        </div>
+        <div style="display:flex;gap:8px;align-items:flex-end;margin-bottom:4px;">
+          <div style="width:24px;height:24px;border-radius:12px;background:#E8C8B8;flex-shrink:0;"></div>
+          <div class="msg-bubble msg-them">Oui ! J'ai vu ça, on y va samedi matin ?</div>
+        </div>
+        <div class="msg-bubble msg-me" style="align-self:flex-end;">Carrément ! Je suis dispo à partir de 9h 🙌</div>
+        <div style="display:flex;gap:8px;align-items:flex-end;margin-bottom:4px;">
+          <div style="width:24px;height:24px;border-radius:12px;background:#C0D8C8;flex-shrink:0;"></div>
+          <div class="msg-bubble msg-them">Top ! On se retrouve devant à 9h15 ?</div>
+        </div>
+        <div class="msg-bubble msg-me" style="align-self:flex-end;">Parfait pour moi ✨</div>
+
+        <!-- POPUP RDV -->
+        <div style="background:#F0F0F0;border-radius:14px;padding:12px 14px;margin:8px 0;display:flex;align-items:center;gap:10px;">
+          <div style="font-size:20px;">📅</div>
+          <div style="flex:1;">
+            <div style="font-size:12px;font-weight:600;color:#333;">On dirait que vous planifiez quelque chose !</div>
+            <div style="font-size:11px;color:#999;margin-top:2px;">Samedi · 9h15 · Yoga République</div>
+          </div>
+          <div style="font-size:11px;color:#333;font-weight:600;white-space:nowrap;">Noter ›</div>
+        </div>
+      </div>
+
+      <div class="chat-input-wrap">
+        <div class="chat-input">Écris un message...</div>
+        <div class="send-btn">→</div>
+      </div>
+    </div>
+
+    <!-- S18 CRÉER UNE ACTIVITÉ -->
+    <div class="screen" id="s18">
+      <div class="top-bar">
+        <div class="back-btn" onclick="goTo('s16')">←</div>
+        <div class="top-title">Nouvelle activité</div>
+        <div style="font-size:13px;font-weight:600;color:#333;cursor:pointer;">Publier</div>
+      </div>
+      <div class="scroll-area" style="padding-top:16px;">
+        <div style="font-size:13px;font-weight:600;color:#333;margin-bottom:8px;">C'est quoi l'activité ? ✨</div>
+        <div style="background:#F8F8F8;border-radius:12px;padding:14px;margin-bottom:16px;">
+          <div style="font-size:15px;color:#CCC;font-style:italic;">Ex : "Expo au Musée d'Orsay samedi ?"</div>
+        </div>
+
+        <div style="font-size:13px;font-weight:600;color:#333;margin-bottom:8px;">Décris l'activité</div>
+        <div style="background:#F8F8F8;border-radius:12px;padding:14px;margin-bottom:16px;height:80px;">
+          <div style="font-size:14px;color:#CCC;font-style:italic;">Donne les détails — lieu, heure, ambiance...</div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
+          <div>
+            <div style="font-size:13px;font-weight:600;color:#333;margin-bottom:8px;">📅 Date</div>
+            <div class="input-field" style="font-size:14px;color:#CCC;">Choisir une date</div>
+          </div>
+          <div>
+            <div style="font-size:13px;font-weight:600;color:#333;margin-bottom:8px;">🕐 Heure</div>
+            <div class="input-field" style="font-size:14px;color:#CCC;">Choisir</div>
+          </div>
+        </div>
+
+        <div style="margin-bottom:16px;">
+          <div style="font-size:13px;font-weight:600;color:#333;margin-bottom:8px;">📍 Lieu</div>
+          <div class="input-field" style="font-size:14px;color:#CCC;">Adresse ou quartier</div>
+        </div>
+
+        <div style="margin-bottom:16px;">
+          <div style="font-size:13px;font-weight:600;color:#333;margin-bottom:8px;">Combien de personnes ?</div>
+          <div style="display:flex;gap:8px;">
+            <span style="padding:8px 16px;border-radius:10px;background:#333;color:white;font-size:13px;font-weight:600;">1</span>
+            <span style="padding:8px 16px;border-radius:10px;background:#F5F5F5;color:#666;font-size:13px;">2</span>
+            <span style="padding:8px 16px;border-radius:10px;background:#F5F5F5;color:#666;font-size:13px;">3</span>
+            <span style="padding:8px 16px;border-radius:10px;background:#F5F5F5;color:#666;font-size:13px;">4+</span>
+          </div>
+        </div>
+
+        <div style="margin-bottom:24px;">
+          <div style="font-size:13px;font-weight:600;color:#333;margin-bottom:8px;">Catégorie</div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;">
+            <span class="tag tag-filled">Culture</span>
+            <span class="tag tag-outline">Sport</span>
+            <span class="tag tag-outline">Restos</span>
+            <span class="tag tag-outline">Musique</span>
+            <span class="tag tag-outline">Bien-être</span>
+            <span class="tag tag-outline">Autre</span>
+          </div>
+        </div>
+
+        <button class="btn btn-primary" onclick="goTo('s16')">Publier l'activité 🌸</button>
+      </div>
+    </div>
+
+    <!-- S19 SALONS PASSION -->
+    <div class="screen" id="s19">
+      <div class="top-bar">
+        <div style="font-size:20px;font-weight:800;color:#1A1A1A;letter-spacing:-0.5px;">Sortir</div>
+        <div style="width:36px;height:36px;background:#F5F5F5;border-radius:10px;"></div>
+      </div>
+
+      <!-- SOUS-ONGLETS -->
+      <div style="display:flex;padding:0 20px 12px;gap:8px;flex-shrink:0;border-bottom:1px solid #F0F0F0;">
+        <div onclick="goTo('s16')" style="flex:1;text-align:center;padding:8px;border-radius:10px;background:#F5F5F5;color:#999;font-size:13px;font-weight:500;cursor:pointer;">Activités</div>
+        <div style="flex:1;text-align:center;padding:8px;border-radius:10px;background:#333;color:white;font-size:13px;font-weight:600;">Salons</div>
+      </div>
+
+      <!-- FILTRE TOUS / MES SALONS -->
+      <div style="display:flex;padding:12px 20px 0;gap:8px;flex-shrink:0;">
+        <div style="padding:6px 16px;border-radius:20px;background:#333;color:white;font-size:12px;font-weight:600;cursor:pointer;">Tous</div>
+        <div onclick="goTo('s19b')" style="padding:6px 16px;border-radius:20px;background:#F5F5F5;color:#666;font-size:12px;font-weight:500;cursor:pointer;">Mes salons</div>
+      </div>
+
+      <div class="scroll-area" style="padding:16px;">
+        <div style="font-size:13px;color:#AAA;margin-bottom:16px;">Des espaces thématiques pour rencontrer des filles qui partagent tes passions 💬</div>
+
+        <!-- SALON 1 -->
+        <div onclick="goTo('s20')" style="cursor:pointer;display:flex;align-items:center;gap:14px;background:#F8F8F8;border-radius:16px;padding:16px;margin-bottom:10px;">
+          <div style="width:50px;height:50px;border-radius:14px;background:#C8A8E8;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;">🎬</div>
+          <div style="flex:1;">
+            <div style="font-size:15px;font-weight:600;color:#1A1A1A;">Cinéma & Séries</div>
+            <div style="font-size:12px;color:#AAA;margin-top:2px;">1 240 filles · Très actif</div>
+          </div>
+          <div style="font-size:18px;color:#CCC;">›</div>
+        </div>
+
+        <!-- SALON 2 -->
+        <div style="display:flex;align-items:center;gap:14px;background:#F8F8F8;border-radius:16px;padding:16px;margin-bottom:10px;">
+          <div style="width:50px;height:50px;border-radius:14px;background:#C0D8C8;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;">🧘</div>
+          <div style="flex:1;">
+            <div style="font-size:15px;font-weight:600;color:#1A1A1A;">Yoga & Bien-être</div>
+            <div style="font-size:12px;color:#AAA;margin-top:2px;">876 filles · Actif</div>
+          </div>
+          <div style="font-size:18px;color:#CCC;">›</div>
+        </div>
+
+        <!-- SALON 3 -->
+        <div style="display:flex;align-items:center;gap:14px;background:#F8F8F8;border-radius:16px;padding:16px;margin-bottom:10px;">
+          <div style="width:50px;height:50px;border-radius:14px;background:#E8C8B8;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;">🍳</div>
+          <div style="flex:1;">
+            <div style="font-size:15px;font-weight:600;color:#1A1A1A;">Cuisine & Restos</div>
+            <div style="font-size:12px;color:#AAA;margin-top:2px;">2 100 filles · Très actif</div>
+          </div>
+          <div style="font-size:18px;color:#CCC;">›</div>
+        </div>
+
+        <!-- SALON 4 -->
+        <div style="display:flex;align-items:center;gap:14px;background:#F8F8F8;border-radius:16px;padding:16px;margin-bottom:10px;">
+          <div style="width:50px;height:50px;border-radius:14px;background:#D8D0C8;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;">📚</div>
+          <div style="flex:1;">
+            <div style="font-size:15px;font-weight:600;color:#1A1A1A;">Lecture & Écriture</div>
+            <div style="font-size:12px;color:#AAA;margin-top:2px;">634 filles · Actif</div>
+          </div>
+          <div style="font-size:18px;color:#CCC;">›</div>
+        </div>
+
+        <!-- SALON 5 -->
+        <div style="display:flex;align-items:center;gap:14px;background:#F8F8F8;border-radius:16px;padding:16px;margin-bottom:10px;">
+          <div style="width:50px;height:50px;border-radius:14px;background:#C8D8E8;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;">🎨</div>
+          <div style="flex:1;">
+            <div style="font-size:15px;font-weight:600;color:#1A1A1A;">Art & Créativité</div>
+            <div style="font-size:12px;color:#AAA;margin-top:2px;">445 filles · Modéré</div>
+          </div>
+          <div style="font-size:18px;color:#CCC;">›</div>
+        </div>
+
+        <div style="text-align:center;padding:16px;">
+          <div style="font-size:13px;color:#AAA;">+ Voir tous les salons</div>
+        </div>
+      </div>
+
+      <div class="bottom-nav">
+        <div class="nav-item" onclick="goTo('s14')"><div class="nav-icon"></div><div class="nav-label">Rencontrer</div></div>
+        <div class="nav-item"><div class="nav-icon active-icon"></div><div class="nav-label active-label">Sortir</div></div>
+        <div class="nav-item" onclick="goTo('s22')"><div class="nav-icon"></div><div class="nav-label">Messages</div></div>
+        <div class="nav-item" onclick="goTo('s21')"><div class="nav-icon"></div><div class="nav-label">Profil</div></div>
+      </div>
+    </div>
+
+    <!-- S20 INTÉRIEUR SALON -->
+    <div class="screen" id="s20">
+      <div class="chat-header" style="border-bottom:1px solid #F0F0F0;">
+        <div class="back-btn" onclick="goTo('s19')">←</div>
+        <div style="width:40px;height:40px;border-radius:12px;background:#C8A8E8;display:flex;align-items:center;justify-content:center;font-size:20px;">🎬</div>
+        <div style="flex:1;margin-left:8px;">
+          <div style="font-size:15px;font-weight:600;color:#1A1A1A;">Cinéma & Séries</div>
+          <div style="font-size:12px;color:#AAA;">1 240 filles</div>
+        </div>
+      </div>
+
+      <div class="scroll-area" style="display:flex;flex-direction:column;padding:16px;gap:12px;">
+
+        <!-- MESSAGE SALON 1 -->
+        <div style="display:flex;gap:10px;align-items:flex-start;">
+          <div style="width:32px;height:32px;border-radius:16px;background:#C8A8E8;flex-shrink:0;"></div>
+          <div style="flex:1;">
+            <div style="display:flex;gap:8px;align-items:center;margin-bottom:4px;">
+              <div style="font-size:13px;font-weight:600;color:#1A1A1A;">Sophie</div>
+              <div style="font-size:11px;color:#AAA;">14h32</div>
+            </div>
+            <div style="background:#F5F5F5;border-radius:14px;border-top-left-radius:4px;padding:10px 14px;">
+              <div style="font-size:14px;color:#333;">Vous avez vu Anatomie d'une chute ? J'ai pleuré 😭 Quelqu'un veut en parler ?</div>
+            </div>
+            <div style="font-size:12px;color:#AAA;margin-top:4px;">🌸 8 · Répondre</div>
+          </div>
+        </div>
+
+        <!-- MESSAGE SALON 2 -->
+        <div style="display:flex;gap:10px;align-items:flex-start;">
+          <div style="width:32px;height:32px;border-radius:16px;background:#E8C8B8;flex-shrink:0;"></div>
+          <div style="flex:1;">
+            <div style="display:flex;gap:8px;align-items:center;margin-bottom:4px;">
+              <div style="font-size:13px;font-weight:600;color:#1A1A1A;">Inès</div>
+              <div style="font-size:11px;color:#AAA;">14h45</div>
+            </div>
+            <div style="background:#F5F5F5;border-radius:14px;border-top-left-radius:4px;padding:10px 14px;">
+              <div style="font-size:14px;color:#333;">Moi ! C'est mon film de l'année. Et la performance de Sandra Hüller... 🔥</div>
+            </div>
+            <div style="font-size:12px;color:#AAA;margin-top:4px;">🌸 12 · Répondre</div>
+          </div>
+        </div>
+
+        <!-- MESSAGE SALON 3 -->
+        <div style="display:flex;gap:10px;align-items:flex-start;">
+          <div style="width:32px;height:32px;border-radius:16px;background:#C0D8C8;flex-shrink:0;"></div>
+          <div style="flex:1;">
+            <div style="display:flex;gap:8px;align-items:center;margin-bottom:4px;">
+              <div style="font-size:13px;font-weight:600;color:#1A1A1A;">Camille</div>
+              <div style="font-size:11px;color:#AAA;">15h02</div>
+            </div>
+            <div style="background:#F5F5F5;border-radius:14px;border-top-left-radius:4px;padding:10px 14px;">
+              <div style="font-size:14px;color:#333;">Quelqu'un veut le revoir en ciné-club ce weekend ? Je cherche des gens pour en discuter après 🎬</div>
+            </div>
+            <div style="font-size:12px;color:#AAA;margin-top:4px;">🌸 5 · Répondre</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="chat-input-wrap">
+        <div class="chat-input">Partage ton avis...</div>
+        <div class="send-btn">→</div>
+      </div>
+    </div>
+
+    <!-- S21 PROFIL PERSO -->
+    <div class="screen" id="s21">
+      <!-- Ambiance différente — fond sombre -->
+      <div style="background:#1A1A1A;padding:44px 20px 24px;flex-shrink:0;position:relative;">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+          <div style="font-size:13px;font-weight:600;letter-spacing:1px;color:#666;text-transform:uppercase;">Mon profil</div>
+          <div style="font-size:13px;color:#666;cursor:pointer;">Modifier</div>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:16px;margin-top:20px;">
+          <div style="position:relative;">
+            <div style="width:72px;height:72px;border-radius:36px;background:#C8D8C0;border:3px solid rgba(80,130,100,0.5);"></div>
+            <div style="position:absolute;bottom:0;right:0;width:20px;height:20px;background:rgb(80,130,100);border-radius:10px;border:2px solid #1A1A1A;display:flex;align-items:center;justify-content:center;font-size:10px;color:white;">✓</div>
+          </div>
+          <div>
+            <div style="font-size:22px;font-weight:700;color:white;">Léa</div>
+            <div style="font-size:13px;color:#666;margin-top:2px;">📍 Paris · 24 ans</div>
+            <div style="font-size:12px;color:rgb(80,130,100);margin-top:4px;font-style:italic;">"On deviendrait vite amies si..."</div>
+          </div>
+        </div>
+
+        <!-- STATS -->
+        <div style="display:flex;gap:0;margin-top:24px;background:#222;border-radius:16px;overflow:hidden;">
+          <div style="flex:1;padding:16px;text-align:center;border-right:1px solid #333;">
+            <div style="font-size:22px;font-weight:700;color:white;">12</div>
+            <div style="font-size:11px;color:#666;margin-top:2px;">Copines</div>
+          </div>
+          <div style="flex:1;padding:16px;text-align:center;border-right:1px solid #333;">
+            <div style="font-size:22px;font-weight:700;color:rgb(80,130,100);">340</div>
+            <div style="font-size:11px;color:#666;margin-top:2px;">Points</div>
+          </div>
+          <div style="flex:1;padding:16px;text-align:center;">
+            <div style="font-size:22px;font-weight:700;color:white;">8</div>
+            <div style="font-size:11px;color:#666;margin-top:2px;">Sorties IRL</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scroll-area" style="background:#F8F8F8;padding:16px;">
+
+        <!-- SECTION PARAMÈTRES -->
+        <div style="background:white;border-radius:16px;overflow:hidden;margin-bottom:12px;">
+          <div style="padding:14px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #F5F5F5;cursor:pointer;">
+            <div style="width:32px;height:32px;background:#F0F0F0;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;">👤</div>
+            <div style="flex:1;font-size:14px;font-weight:500;color:#1A1A1A;">Modifier mon profil</div>
+            <div style="color:#CCC;">›</div>
+          </div>
+          <div onclick="goTo('s28')" style="padding:14px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #F5F5F5;cursor:pointer;">
+            <div style="width:32px;height:32px;background:#F0F0F0;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;">📱</div>
+            <div style="flex:1;font-size:14px;font-weight:500;color:#1A1A1A;">Mon QR code</div>
+            <div style="color:#CCC;">›</div>
+          </div>
+          <div style="padding:14px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #F5F5F5;cursor:pointer;">
+            <div style="width:32px;height:32px;background:#F0F0F0;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;">🔒</div>
+            <div style="flex:1;font-size:14px;font-weight:500;color:#1A1A1A;">Confidentialité</div>
+            <div style="color:#CCC;">›</div>
+          </div>
+          <div style="padding:14px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;">
+            <div style="width:32px;height:32px;background:#F0F0F0;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;">🎨</div>
+            <div style="flex:1;font-size:14px;font-weight:500;color:#1A1A1A;">Ma couleur signature</div>
+            <div style="display:flex;gap:4px;align-items:center;">
+              <div style="width:16px;height:16px;border-radius:8px;background:rgb(80,130,100);"></div>
+              <div style="color:#CCC;">›</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="background:white;border-radius:16px;overflow:hidden;margin-bottom:12px;">
+          <div onclick="goTo('s26')" style="padding:14px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #F5F5F5;cursor:pointer;">
+            <div style="width:32px;height:32px;background:#F0F0F0;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;">⭐</div>
+            <div style="flex:1;font-size:14px;font-weight:500;color:#1A1A1A;">Mes points & badges</div>
+            <div style="display:flex;gap:4px;align-items:center;">
+              <div style="font-size:13px;font-weight:600;color:rgb(80,130,100);">340 pts</div>
+              <div style="color:#CCC;">›</div>
+            </div>
+          </div>
+          <div onclick="goTo('s21b')" style="padding:14px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #F5F5F5;cursor:pointer;">
+            <div style="width:32px;height:32px;background:#F0F0F0;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;">🗂️</div>
+            <div style="flex:1;font-size:14px;font-weight:500;color:#1A1A1A;">Mes souvenirs</div>
+            <div style="color:#CCC;">›</div>
+          </div>
+        </div>
+
+        <div style="background:white;border-radius:16px;overflow:hidden;">
+          <div style="padding:14px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;">
+            <div style="width:32px;height:32px;background:#FEE;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;">🚪</div>
+            <div style="flex:1;font-size:14px;font-weight:500;color:#E44;">Se déconnecter</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="bottom-nav" style="background:white;">
+        <div class="nav-item" onclick="goTo('s14')"><div class="nav-icon"></div><div class="nav-label">Rencontrer</div></div>
+        <div class="nav-item" onclick="goTo('s16')"><div class="nav-icon"></div><div class="nav-label">Sortir</div></div>
+        <div class="nav-item" onclick="goTo('s22')"><div class="nav-icon"></div><div class="nav-label">Messages</div></div>
+        <div class="nav-item"><div class="nav-icon active-icon"></div><div class="nav-label active-label">Profil</div></div>
+      </div>
+    </div>
+
+    <!-- S22 MESSAGES AVEC GROUPES -->
+    <div class="screen" id="s22">
+      <div class="top-bar">
+        <div class="top-title">Messages</div>
+        <div style="width:36px;height:36px;background:#F5F5F5;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer;">✏️</div>
+      </div>
+
+      <div style="padding:8px 20px 12px;flex-shrink:0;">
+        <input class="input-field" placeholder="Rechercher..." readonly style="background:#F5F5F5;border-color:transparent;">
+      </div>
+
+      <!-- GROUPES EN HAUT -->
+      <div style="padding:0 20px 12px;flex-shrink:0;">
+        <div style="font-size:12px;font-weight:600;color:#AAA;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">Mes groupes</div>
+        <div style="display:flex;gap:12px;overflow-x:auto;padding-bottom:4px;">
+          <div onclick="goTo('s17')" style="cursor:pointer;text-align:center;flex-shrink:0;">
+            <div style="width:52px;height:52px;border-radius:16px;background:#C8A8E8;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:4px;">🧘</div>
+            <div style="font-size:10px;color:#666;width:52px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Yoga Paris</div>
+          </div>
+          <div style="text-align:center;flex-shrink:0;">
+            <div style="width:52px;height:52px;border-radius:16px;background:#C0D8C8;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:4px;">🎬</div>
+            <div style="font-size:10px;color:#666;width:52px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Ciné girls</div>
+          </div>
+          <div style="text-align:center;flex-shrink:0;">
+            <div style="width:52px;height:52px;border-radius:16px;background:#F5F5F5;border:2px dashed #DDD;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:4px;">+</div>
+            <div style="font-size:10px;color:#AAA;">Créer</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="height:1px;background:#F0F0F0;flex-shrink:0;"></div>
+
+      <div class="scroll-area">
+        <div style="font-size:12px;font-weight:600;color:#AAA;text-transform:uppercase;letter-spacing:1px;padding:12px 0 8px;">Conversations</div>
+        <div class="chat-item" onclick="goTo('s13')">
+          <div class="chat-avatar"></div>
+          <div class="chat-info">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <div class="chat-name">Sophie</div>
+              <div class="chat-time">14:32</div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-top:2px;">
+              <div class="chat-preview">Trop contente d'avoir matché !</div>
+              <div class="unread-dot"></div>
+            </div>
+          </div>
+        </div>
+        <div class="chat-item">
+          <div class="chat-avatar"></div>
+          <div class="chat-info">
+            <div style="display:flex;justify-content:space-between;">
+              <div class="chat-name">Camille</div>
+              <div class="chat-time">Hier</div>
+            </div>
+            <div class="chat-preview" style="margin-top:2px;">On se retrouve samedi alors ? 😊</div>
+          </div>
+        </div>
+        <div class="chat-item">
+          <div class="chat-avatar"></div>
+          <div class="chat-info">
+            <div style="display:flex;justify-content:space-between;">
+              <div class="chat-name">Inès</div>
+              <div class="chat-time">Lun</div>
+            </div>
+            <div class="chat-preview" style="margin-top:2px;">Super idée pour le brunch !</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bottom-nav">
+        <div class="nav-item" onclick="goTo('s14')"><div class="nav-icon"></div><div class="nav-label">Rencontrer</div></div>
+        <div class="nav-item" onclick="goTo('s16')"><div class="nav-icon"></div><div class="nav-label">Sortir</div></div>
+        <div class="nav-item"><div class="nav-icon active-icon"></div><div class="nav-label active-label">Messages</div></div>
+        <div class="nav-item" onclick="goTo('s21')"><div class="nav-icon"></div><div class="nav-label">Profil</div></div>
+      </div>
+    </div>
+
+    <!-- S19B MES SALONS -->
+    <div class="screen" id="s19b">
+      <div class="top-bar">
+        <div style="font-size:20px;font-weight:800;color:#1A1A1A;letter-spacing:-0.5px;">Sortir</div>
+        <div style="width:36px;height:36px;background:#F5F5F5;border-radius:10px;"></div>
+      </div>
+
+      <!-- SOUS-ONGLETS -->
+      <div style="display:flex;padding:0 20px 12px;gap:8px;flex-shrink:0;border-bottom:1px solid #F0F0F0;">
+        <div onclick="goTo('s16')" style="flex:1;text-align:center;padding:8px;border-radius:10px;background:#F5F5F5;color:#999;font-size:13px;font-weight:500;cursor:pointer;">Activités</div>
+        <div style="flex:1;text-align:center;padding:8px;border-radius:10px;background:#333;color:white;font-size:13px;font-weight:600;">Salons</div>
+      </div>
+
+      <!-- FILTRE TOUS / MES SALONS -->
+      <div style="display:flex;padding:12px 20px 0;gap:8px;flex-shrink:0;">
+        <div onclick="goTo('s19')" style="padding:6px 16px;border-radius:20px;background:#F5F5F5;color:#666;font-size:12px;font-weight:500;cursor:pointer;">Tous</div>
+        <div style="padding:6px 16px;border-radius:20px;background:#333;color:white;font-size:12px;font-weight:600;">Mes salons</div>
+      </div>
+
+      <div class="scroll-area" style="padding:16px;">
+        <div style="font-size:12px;color:#AAA;margin-bottom:16px;">Les salons que tu as rejoints 💬</div>
+
+        <div onclick="goTo('s20')" style="cursor:pointer;display:flex;align-items:center;gap:14px;background:#F8F8F8;border-radius:16px;padding:16px;margin-bottom:10px;border-left:3px solid rgba(120,80,160,0.5);">
+          <div style="width:50px;height:50px;border-radius:14px;background:#C8A8E8;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;">🎬</div>
+          <div style="flex:1;">
+            <div style="font-size:15px;font-weight:600;color:#1A1A1A;">Cinéma & Séries</div>
+            <div style="font-size:12px;color:#AAA;margin-top:2px;">3 nouveaux messages</div>
+          </div>
+          <div style="width:10px;height:10px;background:#333;border-radius:5px;"></div>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:14px;background:#F8F8F8;border-radius:16px;padding:16px;margin-bottom:10px;border-left:3px solid rgba(80,130,100,0.5);">
+          <div style="width:50px;height:50px;border-radius:14px;background:#C0D8C8;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;">🧘</div>
+          <div style="flex:1;">
+            <div style="font-size:15px;font-weight:600;color:#1A1A1A;">Yoga & Bien-être</div>
+            <div style="font-size:12px;color:#AAA;margin-top:2px;">Vu il y a 2h</div>
+          </div>
+          <div style="font-size:18px;color:#CCC;">›</div>
+        </div>
+
+        <div style="text-align:center;padding:20px;">
+          <div onclick="goTo('s19')" style="font-size:13px;color:#666;font-weight:500;cursor:pointer;">+ Rejoindre d'autres salons</div>
+        </div>
+      </div>
+
+      <div class="bottom-nav">
+        <div class="nav-item" onclick="goTo('s14')"><div class="nav-icon"></div><div class="nav-label">Rencontrer</div></div>
+        <div class="nav-item"><div class="nav-icon active-icon"></div><div class="nav-label active-label">Sortir</div></div>
+        <div class="nav-item" onclick="goTo('s22')"><div class="nav-icon"></div><div class="nav-label">Messages</div></div>
+        <div class="nav-item" onclick="goTo('s21')"><div class="nav-icon"></div><div class="nav-label">Profil</div></div>
+      </div>
+    </div>
+
+    <!-- S21B MES SOUVENIRS (ARCHIVES) -->
+    <div class="screen" id="s21b">
+      <div class="top-bar">
+        <div class="back-btn" onclick="goTo('s21')">←</div>
+        <div class="top-title">Mes souvenirs</div>
+        <div style="width:36px;"></div>
+      </div>
+
+      <div class="scroll-area" style="padding:16px;">
+        <div style="font-size:12px;color:#AAA;margin-bottom:20px;">Toutes tes photos archivées — visibles uniquement par toi 🔒</div>
+
+        <!-- MOIS -->
+        <div style="font-size:12px;font-weight:600;color:#999;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;">Avril 2025</div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;margin-bottom:20px;">
+          <div class="img-placeholder" style="height:120px;border-radius:8px;"></div>
+          <div class="img-placeholder" style="height:120px;border-radius:8px;"></div>
+          <div class="img-placeholder" style="height:120px;border-radius:8px;"></div>
+          <div class="img-placeholder" style="height:120px;border-radius:8px;"></div>
+          <div class="img-placeholder" style="height:120px;border-radius:8px;"></div>
+          <div class="img-placeholder" style="height:120px;border-radius:8px;"></div>
+        </div>
+
+        <div style="font-size:12px;font-weight:600;color:#999;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;">Mars 2025</div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;">
+          <div class="img-placeholder" style="height:120px;border-radius:8px;"></div>
+          <div class="img-placeholder" style="height:120px;border-radius:8px;"></div>
+          <div class="img-placeholder" style="height:120px;border-radius:8px;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- S24 ALBUM PARTAGÉ -->
+    <div class="screen" id="s24">
+      <div class="top-bar">
+        <div class="back-btn" onclick="goTo('s13')">←</div>
+        <div class="top-title">Nos souvenirs</div>
+        <div style="width:36px;"></div>
+      </div>
+
+      <div style="padding:0 20px 12px;flex-shrink:0;display:flex;align-items:center;gap:12px;">
+        <div style="width:36px;height:36px;border-radius:18px;background:#C8A8E8;"></div>
+        <div style="font-size:14px;font-weight:600;color:#1A1A1A;">Toi & Sophie</div>
+        <div style="font-size:12px;color:#AAA;">· 3 sorties ensemble 🌸</div>
+      </div>
+
+      <div class="scroll-area" style="padding:16px;">
+        <!-- SORTIE 1 -->
+        <div style="margin-bottom:24px;">
+          <div style="font-size:12px;font-weight:600;color:#999;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Samedi 12 avril · Studio de yoga</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+            <div>
+              <div class="img-placeholder" style="height:130px;border-radius:12px;"></div>
+              <div style="font-size:11px;color:#AAA;font-style:italic;margin-top:4px;">Photo de Sophie</div>
+            </div>
+            <div>
+              <div class="img-placeholder" style="height:130px;border-radius:12px;"></div>
+              <div style="font-size:11px;color:#AAA;font-style:italic;margin-top:4px;">Ta photo</div>
+            </div>
+          </div>
+          <div style="background:#F5F5F5;border-radius:10px;padding:10px 14px;margin-top:8px;display:flex;align-items:center;gap:8px;">
+            <div style="font-size:16px;">⭐</div>
+            <div style="font-size:12px;color:#333;">+50 points gagnés · Badge "Première sortie" débloqué !</div>
+          </div>
+        </div>
+
+        <!-- SORTIE 2 -->
+        <div style="margin-bottom:24px;">
+          <div style="font-size:12px;font-weight:600;color:#999;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Dimanche 20 avril · Expo Pompidou</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+            <div>
+              <div class="img-placeholder" style="height:130px;border-radius:12px;"></div>
+              <div style="font-size:11px;color:#AAA;font-style:italic;margin-top:4px;">Photo de Sophie</div>
+            </div>
+            <div>
+              <div class="img-placeholder" style="height:130px;border-radius:12px;"></div>
+              <div style="font-size:11px;color:#AAA;font-style:italic;margin-top:4px;">Ta photo</div>
+            </div>
+          </div>
+          <div style="background:#F5F5F5;border-radius:10px;padding:10px 14px;margin-top:8px;display:flex;align-items:center;gap:8px;">
+            <div style="font-size:16px;">⭐</div>
+            <div style="font-size:12px;color:#333;">+50 points gagnés</div>
+          </div>
+        </div>
+
+        <!-- SORTIE 3 -->
+        <div>
+          <div style="font-size:12px;font-weight:600;color:#999;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Samedi 26 avril · Brunch rue Oberkampf</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+            <div>
+              <div class="img-placeholder" style="height:130px;border-radius:12px;"></div>
+              <div style="font-size:11px;color:#AAA;font-style:italic;margin-top:4px;">Photo de Sophie</div>
+            </div>
+            <div>
+              <div class="img-placeholder" style="height:130px;border-radius:12px;"></div>
+              <div style="font-size:11px;color:#AAA;font-style:italic;margin-top:4px;">Ta photo</div>
+            </div>
+          </div>
+          <div style="background:#F5F5F5;border-radius:10px;padding:10px 14px;margin-top:8px;display:flex;align-items:center;gap:8px;">
+            <div style="font-size:16px;">⭐</div>
+            <div style="font-size:12px;color:#333;">+50 points gagnés · Badge "Trio de sorties" débloqué !</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- S25 CALENDRIER RDV -->
+    <div class="screen" id="s25">
+      <div class="top-bar">
+        <div class="back-btn" onclick="goTo('s13')">←</div>
+        <div class="top-title">Planifier une sortie</div>
+        <div style="width:36px;"></div>
+      </div>
+
+      <div class="scroll-area" style="padding:16px;">
+        <div style="display:flex;align-items:center;gap:12px;background:#F8F8F8;border-radius:14px;padding:14px;margin-bottom:20px;">
+          <div style="width:40px;height:40px;border-radius:20px;background:#C8A8E8;flex-shrink:0;"></div>
+          <div>
+            <div style="font-size:14px;font-weight:600;color:#1A1A1A;">Sortie avec Sophie</div>
+            <div style="font-size:12px;color:#AAA;margin-top:2px;">Détecté dans votre conversation</div>
+          </div>
+        </div>
+
+        <div style="margin-bottom:20px;">
+          <div style="font-size:13px;font-weight:600;color:#333;margin-bottom:10px;">📅 Date</div>
+          <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center;">
+            <div style="font-size:11px;color:#AAA;padding:4px;">L</div>
+            <div style="font-size:11px;color:#AAA;padding:4px;">M</div>
+            <div style="font-size:11px;color:#AAA;padding:4px;">M</div>
+            <div style="font-size:11px;color:#AAA;padding:4px;">J</div>
+            <div style="font-size:11px;color:#AAA;padding:4px;">V</div>
+            <div style="font-size:11px;color:#AAA;padding:4px;">S</div>
+            <div style="font-size:11px;color:#AAA;padding:4px;">D</div>
+            <div style="font-size:12px;color:#CCC;padding:6px;">28</div>
+            <div style="font-size:12px;color:#CCC;padding:6px;">29</div>
+            <div style="font-size:12px;color:#CCC;padding:6px;">30</div>
+            <div style="font-size:12px;color:#333;padding:6px;">1</div>
+            <div style="font-size:12px;color:#333;padding:6px;">2</div>
+            <div style="font-size:12px;color:white;background:#333;border-radius:20px;padding:6px;font-weight:700;">3</div>
+            <div style="font-size:12px;color:#333;padding:6px;">4</div>
+            <div style="font-size:12px;color:#333;padding:6px;">5</div>
+            <div style="font-size:12px;color:#333;padding:6px;">6</div>
+            <div style="font-size:12px;color:#333;padding:6px;">7</div>
+            <div style="font-size:12px;color:#333;padding:6px;">8</div>
+            <div style="font-size:12px;color:#333;padding:6px;">9</div>
+            <div style="font-size:12px;color:#333;padding:6px;">10</div>
+            <div style="font-size:12px;color:#333;padding:6px;">11</div>
+          </div>
+        </div>
+
+        <div style="margin-bottom:20px;">
+          <div style="font-size:13px;font-weight:600;color:#333;margin-bottom:10px;">🕐 Heure</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <span style="padding:8px 16px;border-radius:20px;background:#F5F5F5;color:#666;font-size:13px;">9h00</span>
+            <span style="padding:8px 16px;border-radius:20px;background:#F5F5F5;color:#666;font-size:13px;">12h00</span>
+            <span style="padding:8px 16px;border-radius:20px;background:#333;color:white;font-size:13px;font-weight:600;">18h00</span>
+            <span style="padding:8px 16px;border-radius:20px;background:#F5F5F5;color:#666;font-size:13px;">20h00</span>
+          </div>
+        </div>
+
+        <div style="margin-bottom:20px;">
+          <div style="font-size:13px;font-weight:600;color:#333;margin-bottom:10px;">📍 Lieu</div>
+          <div class="input-field" style="font-size:14px;">Studio Yuz · Paris 11e</div>
+        </div>
+
+        <div style="background:#F8F8F8;border-radius:14px;padding:14px;margin-bottom:24px;display:flex;align-items:center;gap:10px;">
+          <div style="font-size:20px;">⭐</div>
+          <div>
+            <div style="font-size:13px;font-weight:600;color:#333;">Valide ta sortie pour gagner des points</div>
+            <div style="font-size:12px;color:#AAA;margin-top:2px;">Tu recevras une notif le jour J pour prendre une photo 📷</div>
+          </div>
+        </div>
+
+        <button class="btn btn-primary" onclick="goTo('s13')" style="margin-bottom:12px;">Confirmer la sortie 🌸</button>
+        <button class="btn btn-secondary" onclick="goTo('s13')">Juste noter dans mon calendrier</button>
+      </div>
+    </div>
+
+    <!-- S26 MES POINTS & BADGES -->
+    <div class="screen" id="s26">
+      <div class="top-bar">
+        <div class="back-btn" onclick="goTo('s21')">←</div>
+        <div class="top-title">Points & Badges</div>
+        <div style="width:36px;"></div>
+      </div>
+
+      <div style="background:#1A1A1A;padding:24px 20px;flex-shrink:0;">
+        <div style="text-align:center;">
+          <div style="font-size:48px;font-weight:800;color:white;">340</div>
+          <div style="font-size:14px;color:#666;margin-top:4px;">points accumulés</div>
+          <div style="background:#222;border-radius:12px;padding:12px 20px;margin-top:16px;display:inline-block;">
+            <div style="font-size:12px;color:#AAA;">Prochain palier</div>
+            <div style="height:6px;background:#333;border-radius:3px;margin:8px 0;width:200px;">
+              <div style="height:6px;background:white;border-radius:3px;width:68%;"></div>
+            </div>
+            <div style="font-size:12px;color:#AAA;">340 / 500 pts → <span style="color:white;font-weight:600;">Matching illimité</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scroll-area" style="padding:16px;">
+        <div style="font-size:13px;font-weight:600;color:#333;margin-bottom:12px;">Mes badges 🏅</div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:24px;">
+          <div style="background:#F8F8F8;border-radius:14px;padding:16px;text-align:center;">
+            <div style="font-size:32px;margin-bottom:8px;">🌸</div>
+            <div style="font-size:13px;font-weight:600;color:#1A1A1A;">Première sortie</div>
+            <div style="font-size:11px;color:#AAA;margin-top:4px;">Ta 1ère rencontre IRL</div>
+          </div>
+          <div style="background:#F8F8F8;border-radius:14px;padding:16px;text-align:center;">
+            <div style="font-size:32px;margin-bottom:8px;">🎯</div>
+            <div style="font-size:13px;font-weight:600;color:#1A1A1A;">Trio de sorties</div>
+            <div style="font-size:11px;color:#AAA;margin-top:4px;">3 sorties avec une même copine</div>
+          </div>
+          <div style="background:#F8F8F8;border-radius:14px;padding:16px;text-align:center;">
+            <div style="font-size:32px;margin-bottom:8px;">✓</div>
+            <div style="font-size:13px;font-weight:600;color:#1A1A1A;">Certifiée</div>
+            <div style="font-size:11px;color:#AAA;margin-top:4px;">Identité vérifiée</div>
+          </div>
+          <div style="background:#F0F0F0;border-radius:14px;padding:16px;text-align:center;opacity:0.5;">
+            <div style="font-size:32px;margin-bottom:8px;">🔒</div>
+            <div style="font-size:13px;font-weight:600;color:#999;">Exploratrice</div>
+            <div style="font-size:11px;color:#BBB;margin-top:4px;">5 sorties différentes</div>
+          </div>
+        </div>
+
+        <div style="font-size:13px;font-weight:600;color:#333;margin-bottom:12px;">Ce que tu peux débloquer ⭐</div>
+
+        <div style="background:#F8F8F8;border-radius:14px;overflow:hidden;">
+          <div style="padding:14px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #EEE;">
+            <div>
+              <div style="font-size:13px;font-weight:600;color:#1A1A1A;">Matching illimité</div>
+              <div style="font-size:11px;color:#AAA;">500 points</div>
+            </div>
+            <div style="font-size:13px;color:#AAA;">340/500</div>
+          </div>
+          <div style="padding:14px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #EEE;">
+            <div>
+              <div style="font-size:13px;font-weight:600;color:#1A1A1A;">Profil mis en avant</div>
+              <div style="font-size:11px;color:#AAA;">750 points</div>
+            </div>
+            <div style="font-size:13px;color:#AAA;">340/750</div>
+          </div>
+          <div style="padding:14px 16px;display:flex;align-items:center;justify-content:space-between;">
+            <div>
+              <div style="font-size:13px;font-weight:600;color:#1A1A1A;">Accès salons exclusifs</div>
+              <div style="font-size:11px;color:#AAA;">1000 points</div>
+            </div>
+            <div style="font-size:13px;color:#AAA;">340/1000</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- S27 COUPS DE CŒUR REÇUS -->
+    <div class="screen" id="s27">
+      <div class="top-bar">
+        <div class="back-btn" onclick="goTo('s14')">←</div>
+        <div class="top-title">Coups de cœur reçus</div>
+        <div style="width:36px;"></div>
+      </div>
+
+      <!-- FILTRES -->
+      <div style="display:flex;padding:0 20px 12px;gap:8px;flex-shrink:0;border-bottom:1px solid #F0F0F0;">
+        <div onclick="goTo('s14')" style="flex:1;text-align:center;padding:8px;border-radius:10px;background:#F5F5F5;color:#999;font-size:13px;font-weight:500;cursor:pointer;">Rencontrer</div>
+        <div style="flex:1;text-align:center;padding:8px;border-radius:10px;background:#333;color:white;font-size:13px;font-weight:600;">🤍 7</div>
+        <div onclick="goTo('s15')" style="flex:1;text-align:center;padding:8px;border-radius:10px;background:#F5F5F5;color:#999;font-size:13px;font-weight:500;cursor:pointer;">Mes Copines</div>
+      </div>
+
+      <div class="scroll-area" style="padding:16px;">
+        <div style="font-size:13px;color:#AAA;margin-bottom:16px;">7 filles ont eu un coup de cœur pour toi 🌸</div>
+
+        <!-- PROFIL 1 — visible -->
+        <div onclick="goTo('s10')" style="cursor:pointer;display:flex;align-items:center;gap:12px;padding:14px;background:#F8F8F8;border-radius:16px;margin-bottom:10px;">
+          <div style="width:56px;height:56px;border-radius:16px;background:#C8A8E8;flex-shrink:0;position:relative;">
+            <div style="position:absolute;bottom:-4px;right:-4px;background:#E8184A;border-radius:10px;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:11px;border:2px solid white;">🤍</div>
+          </div>
+          <div style="flex:1;">
+            <div style="font-size:15px;font-weight:600;color:#1A1A1A;">Sophie · 26 ans · Paris</div>
+            <div style="font-size:13px;color:#AAA;margin-top:2px;font-style:italic;">"Je cherche quelqu'un pour tester les restos du 10e 🍜"</div>
+            <div style="display:flex;gap:6px;margin-top:6px;">
+              <span style="background:#F0F0F0;color:#666;font-size:10px;padding:2px 8px;border-radius:20px;">Cinéma</span>
+              <span style="background:#F0F0F0;color:#666;font-size:10px;padding:2px 8px;border-radius:20px;">Yoga</span>
+            </div>
+          </div>
+          <div style="font-size:18px;color:#CCC;">›</div>
+        </div>
+
+        <!-- PROFIL 2 — visible -->
+        <div onclick="goTo('s10b')" style="cursor:pointer;display:flex;align-items:center;gap:12px;padding:14px;background:#F8F8F8;border-radius:16px;margin-bottom:10px;">
+          <div style="width:56px;height:56px;border-radius:16px;background:#E8C8B8;flex-shrink:0;position:relative;">
+            <div style="position:absolute;bottom:-4px;right:-4px;background:#E8184A;border-radius:10px;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:11px;border:2px solid white;">🤍</div>
+          </div>
+          <div style="flex:1;">
+            <div style="font-size:15px;font-weight:600;color:#1A1A1A;">Inès · 23 ans · Lyon</div>
+            <div style="font-size:13px;color:#AAA;margin-top:2px;font-style:italic;">"Nouvelle à Lyon, quelqu'un pour un café ? ☕"</div>
+            <div style="display:flex;gap:6px;margin-top:6px;">
+              <span style="background:#F0F0F0;color:#666;font-size:10px;padding:2px 8px;border-radius:20px;">Lecture</span>
+              <span style="background:#F0F0F0;color:#666;font-size:10px;padding:2px 8px;border-radius:20px;">Randonnée</span>
+            </div>
+          </div>
+          <div style="font-size:18px;color:#CCC;">›</div>
+        </div>
+
+        <!-- PROFILS FLOUTÉS — version gratuite -->
+        <div style="position:relative;margin-bottom:10px;">
+          <div style="display:flex;align-items:center;gap:12px;padding:14px;background:#F8F8F8;border-radius:16px;filter:blur(4px);pointer-events:none;">
+            <div style="width:56px;height:56px;border-radius:16px;background:#C0D8C8;flex-shrink:0;"></div>
+            <div style="flex:1;">
+              <div style="font-size:15px;font-weight:600;color:#1A1A1A;">Camille · 25 ans</div>
+              <div style="font-size:13px;color:#AAA;margin-top:2px;">···</div>
+            </div>
+          </div>
+          <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(255,255,255,0.7);border-radius:16px;">
+            <div style="font-size:12px;font-weight:600;color:#333;">+5 coups de cœur</div>
+            <div style="font-size:11px;color:#AAA;margin-top:2px;">Passe en premium pour les voir</div>
+          </div>
+        </div>
+
+        <div style="background:#FFF0F3;border-radius:14px;padding:16px;text-align:center;margin-top:8px;">
+          <div style="font-size:14px;font-weight:600;color:#E8184A;margin-bottom:4px;">Voir tous tes coups de cœur 🌸</div>
+          <div style="font-size:12px;color:#AAA;margin-bottom:12px;">Débloque l'accès complet avec le premium</div>
+          <button style="padding:10px 24px;border-radius:20px;background:#E8184A;color:white;font-size:13px;font-weight:600;border:none;cursor:pointer;">Découvrir le premium</button>
+        </div>
+      </div>
+
+      <div class="bottom-nav">
+        <div class="nav-item"><div class="nav-icon active-icon"></div><div class="nav-label active-label">Rencontrer</div></div>
+        <div class="nav-item" onclick="goTo('s16')"><div class="nav-icon"></div><div class="nav-label">Sortir</div></div>
+        <div class="nav-item" onclick="goTo('s22')"><div class="nav-icon"></div><div class="nav-label">Messages</div></div>
+        <div class="nav-item" onclick="goTo('s21')"><div class="nav-icon"></div><div class="nav-label">Profil</div></div>
+      </div>
+    </div>
+
+    <!-- S28 QR CODE PROFIL -->
+    <div class="screen" id="s28">
+      <div class="top-bar">
+        <div class="back-btn" onclick="goTo('s21')">←</div>
+        <div class="top-title">Mon QR code</div>
+        <div style="width:36px;"></div>
+      </div>
+
+      <div class="scroll-area" style="padding:32px 24px; display:flex; flex-direction:column; align-items:center; text-align:center;">
+
+        <!-- AVATAR -->
+        <div style="width:72px;height:72px;border-radius:36px;background:#C8D8C0;border:3px solid rgba(80,130,100,0.3);margin-bottom:8px;"></div>
+        <div style="font-size:18px;font-weight:700;color:#1A1A1A;margin-bottom:4px;">Léa</div>
+        <div style="font-size:13px;color:#AAA;margin-bottom:32px;">@lea.girls</div>
+
+        <!-- QR CODE -->
+        <div style="width:220px;height:220px;background:#F8F8F8;border-radius:20px;padding:20px;margin-bottom:24px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,0.08);">
+          <!-- QR simulé -->
+          <svg width="180" height="180" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
+            <!-- Coin haut gauche -->
+            <rect x="0" y="0" width="3" height="3" fill="#1A1A1A"/>
+            <rect x="0.5" y="0.5" width="2" height="2" fill="white"/>
+            <rect x="1" y="1" width="1" height="1" fill="#1A1A1A"/>
+            <!-- Coin haut droit -->
+            <rect x="6" y="0" width="3" height="3" fill="#1A1A1A"/>
+            <rect x="6.5" y="0.5" width="2" height="2" fill="white"/>
+            <rect x="7" y="1" width="1" height="1" fill="#1A1A1A"/>
+            <!-- Coin bas gauche -->
+            <rect x="0" y="6" width="3" height="3" fill="#1A1A1A"/>
+            <rect x="0.5" y="6.5" width="2" height="2" fill="white"/>
+            <rect x="1" y="7" width="1" height="1" fill="#1A1A1A"/>
+            <!-- Données centre -->
+            <rect x="4" y="0" width="1" height="1" fill="#1A1A1A"/>
+            <rect x="3" y="1" width="1" height="1" fill="#1A1A1A"/>
+            <rect x="5" y="1" width="1" height="1" fill="#1A1A1A"/>
+            <rect x="4" y="2" width="1" height="1" fill="#1A1A1A"/>
+            <rect x="3" y="3" width="1" height="1" fill="#1A1A1A"/>
+            <rect x="5" y="3" width="1" height="1" fill="#1A1A1A"/>
+            <rect x="4" y="3" width="1" height="1" fill="#1A1A1A"/>
+            <rect x="3" y="4" width="1" height="1" fill="#1A1A1A"/>
+            <rect x="5" y="4" width="1" height="1" fill="#1A1A1A"/>
+            <rect x="4" y="5" width="1" height="1" fill="#1A1A1A"/>
+            <rect x="3" y="5" width="1" height="1" fill="#1A1A1A"/>
+            <rect x="4" y="6" width="1" height="1" fill="#1A1A1A"/>
+            <rect x="5" y="6" width="1" height="1" fill="#1A1A1A"/>
+            <rect x="4" y="7" width="1" height="1" fill="#1A1A1A"/>
+            <rect x="3" y="8" width="1" height="1" fill="#1A1A1A"/>
+            <rect x="5" y="8" width="1" height="1" fill="#1A1A1A"/>
+            <rect x="6" y="4" width="1" height="1" fill="#1A1A1A"/>
+            <rect x="7" y="4" width="1" height="1" fill="#1A1A1A"/>
+            <rect x="8" y="3" width="1" height="1" fill="#1A1A1A"/>
+            <rect x="6" y="5" width="1" height="1" fill="#1A1A1A"/>
+            <rect x="8" y="5" width="1" height="1" fill="#1A1A1A"/>
+            <rect x="7" y="6" width="1" height="1" fill="#1A1A1A"/>
+            <rect x="6" y="7" width="1" height="1" fill="#1A1A1A"/>
+            <rect x="8" y="7" width="1" height="1" fill="#1A1A1A"/>
+            <rect x="7" y="8" width="1" height="1" fill="#1A1A1A"/>
+          </svg>
+        </div>
+
+        <div style="font-size:14px;color:#555;margin-bottom:8px;line-height:1.6;">Montre ce QR code à une amie pour qu'elle t'ajoute directement sur GIRLS 🌸</div>
+        <div style="font-size:12px;color:#AAA;margin-bottom:32px;">Parfait pour se retrouver IRL avec les copines de tes copines</div>
+
+        <div style="display:flex;flex-direction:column;gap:12px;width:100%;">
+          <button style="padding:14px;border-radius:14px;background:#E8184A;color:white;font-size:15px;font-weight:600;border:none;cursor:pointer;width:100%;">Partager mon profil 🔗</button>
+          <button style="padding:14px;border-radius:14px;background:#F5F5F5;color:#333;font-size:15px;font-weight:600;border:none;cursor:pointer;width:100%;">Scanner un QR code 📷</button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  function goTo(id) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    document.querySelectorAll('.nav-btn').forEach((b, i) => {
+      b.classList.toggle('active', b.getAttribute('onclick') === `goTo('${id}')`);
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>
