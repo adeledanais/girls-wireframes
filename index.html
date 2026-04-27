@@ -94,7 +94,7 @@
 
   /* SCREEN */
   .screen {
-    display: none;
+    display: flex;
     flex-direction: column;
     height: 800px;
     overflow: hidden;
@@ -270,7 +270,7 @@
     scrollbar-width: none;
   }
 
-  .scroll-area::-webkit-scrollbar { display: none; }
+  .scroll-area::-webkit-scrollbar { display: flex; }
 
   /* ANNOTATION */
   .annotation {
@@ -643,59 +643,52 @@
     margin-top: 4px;
   }
 
+
+  .phone-frame {
+    width: 390px;
+    height: 844px;
+    background: white;
+    border-radius: 50px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(155,0,56,0.15), 0 0 0 1px rgba(0,0,0,0.06);
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .phone-label {
+    text-align: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: #9B0038;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .phone-wrap-single {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
 </style>
 </head>
 <body>
 
-<h1>GIRLS — Wireframes</h1>
-<p class="subtitle">Prototype cliquable · 28 écrans · v1 + v2 + v3</p>
 
-<div class="nav">
-  <button class="nav-btn active" onclick="goTo('s1')">1. Splash</button>
-  <button class="nav-btn" onclick="goTo('s2')">2. Inscription</button>
-  <button class="nav-btn" onclick="goTo('s3')">3. Espace femmes</button>
-  <button class="nav-btn" onclick="goTo('s4')">4. Certifiée</button>
-  <button class="nav-btn" onclick="goTo('s5')">5. Photos</button>
-  <button class="nav-btn" onclick="goTo('s6')">6. Prompts</button>
-  <button class="nav-btn" onclick="goTo('s7')">7. Critères</button>
-  <button class="nav-btn" onclick="goTo('s8')">8. Aperçu profil</button>
-  <button class="nav-btn" onclick="goTo('s14')">9. Rencontrer</button>
-  <button class="nav-btn" onclick="goTo('s27')">10. Coups de cœur reçus</button>
-  <button class="nav-btn" onclick="goTo('s15')">11. Mes Copines</button>
-  <button class="nav-btn" onclick="goTo('s10')">12. Profil violet</button>
-  <button class="nav-btn" onclick="goTo('s10b')">13. Profil terracotta</button>
-  <button class="nav-btn" onclick="goTo('s11')">14. Coup de cœur !</button>
-  <button class="nav-btn" onclick="goTo('s22')">15. Messages</button>
-  <button class="nav-btn" onclick="goTo('s13')">16. Chat 1-to-1</button>
-  <button class="nav-btn" onclick="goTo('s24')">17. Album partagé</button>
-  <button class="nav-btn" onclick="goTo('s25')">18. Planifier RDV</button>
-  <button class="nav-btn" onclick="goTo('s17')">19. Groupe chat</button>
-  <button class="nav-btn" onclick="goTo('s16')">20. Sortir — Activités</button>
-  <button class="nav-btn" onclick="goTo('s18')">21. Créer activité</button>
-  <button class="nav-btn" onclick="goTo('s19')">22. Salons — Tous</button>
-  <button class="nav-btn" onclick="goTo('s19b')">23. Mes salons</button>
-  <button class="nav-btn" onclick="goTo('s20')">24. Intérieur salon</button>
-  <button class="nav-btn" onclick="goTo('s21')">25. Mon profil</button>
-  <button class="nav-btn" onclick="goTo('s28')">26. QR code</button>
-  <button class="nav-btn" onclick="goTo('s26')">27. Points & Badges</button>
-  <button class="nav-btn" onclick="goTo('s21b')">28. Mes souvenirs</button>
-</div>
 
-<div class="phone-wrap">
-  <div class="phone">
 
-    <!-- STATUS BAR -->
-    <div class="status-bar">
-      <span class="status-time">9:41</span>
-      <div class="status-icons">
-        <div class="status-icon wifi"></div>
+
+
+    
         <div class="status-icon"></div>
         <div class="status-icon battery"></div>
       </div>
     </div>
 
-    <!-- S1 SPLASH -->
-    <div class="screen active" id="s1">
+    </div></div>
+
+<!-- S1 SPLASH -->
+    <div class="phone-wrap-single"><div class="phone-label">1. Splash</div><div class="phone-frame"><div class="status-bar"><span class="status-time">9:41</span><div class="status-right"><div class="s-icon" style="width:15px;clip-path:polygon(50% 0%,0% 100%,100% 100%);border-radius:0;background:var(--dark);height:10px;"></div><div class="s-icon" style="width:16px;background:var(--dark);height:10px;"></div></div></div><div class="screen" id="s1">
       <div class="splash-content">
         <div class="splash-logo">GIRLS</div>
         <div class="splash-tagline">Friendship, IRL</div>
@@ -709,8 +702,10 @@
       </div>
     </div>
 
-    <!-- S2 INSCRIPTION -->
-    <div class="screen" id="s2">
+    </div></div>
+
+<!-- S2 INSCRIPTION -->
+    <div class="phone-wrap-single"><div class="phone-label">2. Inscription</div><div class="phone-frame"><div class="status-bar"><span class="status-time">9:41</span><div class="status-right"><div class="s-icon" style="width:15px;clip-path:polygon(50% 0%,0% 100%,100% 100%);border-radius:0;background:var(--dark);height:10px;"></div><div class="s-icon" style="width:16px;background:var(--dark);height:10px;"></div></div></div><div class="screen" id="s2">
       <div class="top-bar">
         <div class="back-btn" onclick="goTo('s1')">←</div>
         <div class="top-title"></div>
@@ -745,8 +740,10 @@
       </div>
     </div>
 
-    <!-- S3 FEMMES UNIQUEMENT -->
-    <div class="screen" id="s3">
+    </div></div>
+
+<!-- S3 FEMMES UNIQUEMENT -->
+    <div class="phone-wrap-single"><div class="phone-label">3. Espace femmes</div><div class="phone-frame"><div class="status-bar"><span class="status-time">9:41</span><div class="status-right"><div class="s-icon" style="width:15px;clip-path:polygon(50% 0%,0% 100%,100% 100%);border-radius:0;background:var(--dark);height:10px;"></div><div class="s-icon" style="width:16px;background:var(--dark);height:10px;"></div></div></div><div class="screen" id="s3">
       <div class="top-bar">
         <div class="back-btn" onclick="goTo('s2')">←</div>
         <div style="width:36px"></div>
@@ -772,8 +769,10 @@
       </div>
     </div>
 
-    <!-- S4 CERTIFIÉE -->
-    <div class="screen" id="s4">
+    </div></div>
+
+<!-- S4 CERTIFIÉE -->
+    <div class="phone-wrap-single"><div class="phone-label">4. Certifiée</div><div class="phone-frame"><div class="status-bar"><span class="status-time">9:41</span><div class="status-right"><div class="s-icon" style="width:15px;clip-path:polygon(50% 0%,0% 100%,100% 100%);border-radius:0;background:var(--dark);height:10px;"></div><div class="s-icon" style="width:16px;background:var(--dark);height:10px;"></div></div></div><div class="screen" id="s4">
       <div class="top-bar">
         <div class="back-btn" onclick="goTo('s3')">←</div>
         <div style="width:36px"></div>
@@ -809,8 +808,10 @@
       </div>
     </div>
 
-    <!-- S5 PHOTOS -->
-    <div class="screen" id="s5">
+    </div></div>
+
+<!-- S5 PHOTOS -->
+    <div class="phone-wrap-single"><div class="phone-label">5. Photos</div><div class="phone-frame"><div class="status-bar"><span class="status-time">9:41</span><div class="status-right"><div class="s-icon" style="width:15px;clip-path:polygon(50% 0%,0% 100%,100% 100%);border-radius:0;background:var(--dark);height:10px;"></div><div class="s-icon" style="width:16px;background:var(--dark);height:10px;"></div></div></div><div class="screen" id="s5">
       <div class="top-bar">
         <div class="back-btn" onclick="goTo('s4')">←</div>
         <div class="top-title">Mon profil</div>
@@ -848,8 +849,10 @@
       </div>
     </div>
 
-    <!-- S6 PROMPTS -->
-    <div class="screen" id="s6">
+    </div></div>
+
+<!-- S6 PROMPTS -->
+    <div class="phone-wrap-single"><div class="phone-label">6. Prompts</div><div class="phone-frame"><div class="status-bar"><span class="status-time">9:41</span><div class="status-right"><div class="s-icon" style="width:15px;clip-path:polygon(50% 0%,0% 100%,100% 100%);border-radius:0;background:var(--dark);height:10px;"></div><div class="s-icon" style="width:16px;background:var(--dark);height:10px;"></div></div></div><div class="screen" id="s6">
       <div class="top-bar">
         <div class="back-btn" onclick="goTo('s5')">←</div>
         <div class="top-title">Mon profil</div>
@@ -885,8 +888,10 @@
       </div>
     </div>
 
-    <!-- S7 CRITÈRES -->
-    <div class="screen" id="s7">
+    </div></div>
+
+<!-- S7 CRITÈRES -->
+    <div class="phone-wrap-single"><div class="phone-label">7. Critères</div><div class="phone-frame"><div class="status-bar"><span class="status-time">9:41</span><div class="status-right"><div class="s-icon" style="width:15px;clip-path:polygon(50% 0%,0% 100%,100% 100%);border-radius:0;background:var(--dark);height:10px;"></div><div class="s-icon" style="width:16px;background:var(--dark);height:10px;"></div></div></div><div class="screen" id="s7">
       <div class="top-bar">
         <div class="back-btn" onclick="goTo('s6')">←</div>
         <div class="top-title">Mon profil</div>
@@ -944,8 +949,10 @@
       </div>
     </div>
 
-    <!-- S8 APERÇU PROFIL -->
-    <div class="screen" id="s8">
+    </div></div>
+
+<!-- S8 APERÇU PROFIL -->
+    <div class="phone-wrap-single"><div class="phone-label">8. Aperçu profil</div><div class="phone-frame"><div class="status-bar"><span class="status-time">9:41</span><div class="status-right"><div class="s-icon" style="width:15px;clip-path:polygon(50% 0%,0% 100%,100% 100%);border-radius:0;background:var(--dark);height:10px;"></div><div class="s-icon" style="width:16px;background:var(--dark);height:10px;"></div></div></div><div class="screen" id="s8">
       <div class="profile-detail-photo">
         <div style="position:absolute;inset:0;background:#C8D8C0;"></div>
         <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
@@ -987,8 +994,10 @@
       </div>
     </div>
 
-    <!-- S9 RENCONTRER -->
-    <div class="screen" id="s9">
+    </div></div>
+
+<!-- S9 RENCONTRER -->
+    <div class="phone-wrap-single"><div class="phone-label">9. Rencontrer</div><div class="phone-frame"><div class="status-bar"><span class="status-time">9:41</span><div class="status-right"><div class="s-icon" style="width:15px;clip-path:polygon(50% 0%,0% 100%,100% 100%);border-radius:0;background:var(--dark);height:10px;"></div><div class="s-icon" style="width:16px;background:var(--dark);height:10px;"></div></div></div><div class="screen" id="s9">
       <div class="top-bar">
         <div style="font-size:20px; font-weight:800; color:#1A1A1A; letter-spacing:-0.5px;">GIRLS</div>
         <div style="display:flex; gap:8px;">
@@ -1112,8 +1121,10 @@
       </div>
     </div>
 
-    <!-- S10 PROFIL DÉTAILLÉ -->
-    <div class="screen" id="s10">
+    </div></div>
+
+<!-- S10 PROFIL DÉTAILLÉ -->
+    <div class="phone-wrap-single"><div class="phone-label">10. Profil violet</div><div class="phone-frame"><div class="status-bar"><span class="status-time">9:41</span><div class="status-right"><div class="s-icon" style="width:15px;clip-path:polygon(50% 0%,0% 100%,100% 100%);border-radius:0;background:var(--dark);height:10px;"></div><div class="s-icon" style="width:16px;background:var(--dark);height:10px;"></div></div></div><div class="screen" id="s10">
       <div class="profile-detail-photo">
         <div style="position:absolute;inset:0;background:#D8C8E8;"></div>
         <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
@@ -1191,8 +1202,10 @@
       </div>
     </div>
 
-    <!-- S10B PROFIL DÉTAILLÉ — TERRACOTTA -->
-    <div class="screen" id="s10b">
+    </div></div>
+
+<!-- S10B PROFIL DÉTAILLÉ — TERRACOTTA -->
+    <div class="phone-wrap-single"><div class="phone-label">11. Profil terracotta</div><div class="phone-frame"><div class="status-bar"><span class="status-time">9:41</span><div class="status-right"><div class="s-icon" style="width:15px;clip-path:polygon(50% 0%,0% 100%,100% 100%);border-radius:0;background:var(--dark);height:10px;"></div><div class="s-icon" style="width:16px;background:var(--dark);height:10px;"></div></div></div><div class="screen" id="s10b">
       <div class="profile-detail-photo">
         <div style="position:absolute;inset:0;background:#E8C8B8;"></div>
         <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
@@ -1259,8 +1272,10 @@
       </div>
     </div>
 
-    <!-- S11 COUP DE CŒUR ! -->
-    <div class="screen" id="s11">
+    </div></div>
+
+<!-- S11 COUP DE CŒUR ! -->
+    <div class="phone-wrap-single"><div class="phone-label">12. Coup de cœur</div><div class="phone-frame"><div class="status-bar"><span class="status-time">9:41</span><div class="status-right"><div class="s-icon" style="width:15px;clip-path:polygon(50% 0%,0% 100%,100% 100%);border-radius:0;background:var(--dark);height:10px;"></div><div class="s-icon" style="width:16px;background:var(--dark);height:10px;"></div></div></div><div class="screen" id="s11">
       <div class="celebration">
         <div style="font-size:48px; margin-bottom:8px;">🌸</div>
         <div class="celebration-avatars">
@@ -1277,8 +1292,10 @@
       </div>
     </div>
 
-    <!-- S12 CONVERSATIONS -->
-    <div class="screen" id="s12">
+    </div></div>
+
+<!-- S12 CONVERSATIONS -->
+    <div class="phone-wrap-single"><div class="phone-label">13. Messages ancien</div><div class="phone-frame"><div class="status-bar"><span class="status-time">9:41</span><div class="status-right"><div class="s-icon" style="width:15px;clip-path:polygon(50% 0%,0% 100%,100% 100%);border-radius:0;background:var(--dark);height:10px;"></div><div class="s-icon" style="width:16px;background:var(--dark);height:10px;"></div></div></div><div class="screen" id="s12">
       <div class="top-bar">
         <div class="top-title">Messages</div>
         <div style="width:36px;height:36px;background:#F5F5F5;border-radius:10px;"></div>
@@ -1347,8 +1364,10 @@
       </div>
     </div>
 
-    <!-- S13 CHAT -->
-    <div class="screen" id="s13">
+    </div></div>
+
+<!-- S13 CHAT -->
+    <div class="phone-wrap-single"><div class="phone-label">14. Chat</div><div class="phone-frame"><div class="status-bar"><span class="status-time">9:41</span><div class="status-right"><div class="s-icon" style="width:15px;clip-path:polygon(50% 0%,0% 100%,100% 100%);border-radius:0;background:var(--dark);height:10px;"></div><div class="s-icon" style="width:16px;background:var(--dark);height:10px;"></div></div></div><div class="screen" id="s13">
       <div class="chat-header">
         <div class="back-btn" onclick="goTo('s22')">←</div>
         <div class="chat-avatar-sm"></div>
@@ -1388,8 +1407,10 @@
       </div>
     </div>
 
-    <!-- S14 RENCONTRER — SOUS-ONGLETS -->
-    <div class="screen" id="s14">
+    </div></div>
+
+<!-- S14 RENCONTRER — SOUS-ONGLETS -->
+    <div class="phone-wrap-single"><div class="phone-label">15. Rencontrer v2</div><div class="phone-frame"><div class="status-bar"><span class="status-time">9:41</span><div class="status-right"><div class="s-icon" style="width:15px;clip-path:polygon(50% 0%,0% 100%,100% 100%);border-radius:0;background:var(--dark);height:10px;"></div><div class="s-icon" style="width:16px;background:var(--dark);height:10px;"></div></div></div><div class="screen" id="s14">
       <div class="top-bar">
         <div style="font-size:20px; font-weight:800; color:#1A1A1A; letter-spacing:-0.5px;">GIRLS</div>
         <div style="display:flex;gap:8px;align-items:center;">
@@ -1476,8 +1497,10 @@
       </div>
     </div>
 
-    <!-- S15 MES COPINES -->
-    <div class="screen" id="s15">
+    </div></div>
+
+<!-- S15 MES COPINES -->
+    <div class="phone-wrap-single"><div class="phone-label">16. Mes Copines</div><div class="phone-frame"><div class="status-bar"><span class="status-time">9:41</span><div class="status-right"><div class="s-icon" style="width:15px;clip-path:polygon(50% 0%,0% 100%,100% 100%);border-radius:0;background:var(--dark);height:10px;"></div><div class="s-icon" style="width:16px;background:var(--dark);height:10px;"></div></div></div><div class="screen" id="s15">
       <div class="top-bar">
         <div style="font-size:20px;font-weight:800;color:#1A1A1A;letter-spacing:-0.5px;">GIRLS</div>
         <div style="display:flex;gap:8px;align-items:center;">
@@ -1572,8 +1595,10 @@
       </div>
     </div>
 
-    <!-- S16 SORTIR — ACTIVITÉS -->
-    <div class="screen" id="s16">
+    </div></div>
+
+<!-- S16 SORTIR — ACTIVITÉS -->
+    <div class="phone-wrap-single"><div class="phone-label">17. Sortir</div><div class="phone-frame"><div class="status-bar"><span class="status-time">9:41</span><div class="status-right"><div class="s-icon" style="width:15px;clip-path:polygon(50% 0%,0% 100%,100% 100%);border-radius:0;background:var(--dark);height:10px;"></div><div class="s-icon" style="width:16px;background:var(--dark);height:10px;"></div></div></div><div class="screen" id="s16">
       <div class="top-bar">
         <div style="font-size:20px;font-weight:800;color:#1A1A1A;letter-spacing:-0.5px;">Sortir</div>
         <div onclick="goTo('s18')" style="width:36px;height:36px;background:#333;border-radius:10px;display:flex;align-items:center;justify-content:center;color:white;font-size:18px;cursor:pointer;">+</div>
@@ -1686,8 +1711,10 @@
       </div>
     </div>
 
-    <!-- S17 GROUPE CHAT -->
-    <div class="screen" id="s17">
+    </div></div>
+
+<!-- S17 GROUPE CHAT -->
+    <div class="phone-wrap-single"><div class="phone-label">18. Groupe chat</div><div class="phone-frame"><div class="status-bar"><span class="status-time">9:41</span><div class="status-right"><div class="s-icon" style="width:15px;clip-path:polygon(50% 0%,0% 100%,100% 100%);border-radius:0;background:var(--dark);height:10px;"></div><div class="s-icon" style="width:16px;background:var(--dark);height:10px;"></div></div></div><div class="screen" id="s17">
       <div class="chat-header">
         <div class="back-btn" onclick="goTo('s22')">←</div>
         <div style="display:flex;">
@@ -1735,8 +1762,10 @@
       </div>
     </div>
 
-    <!-- S18 CRÉER UNE ACTIVITÉ -->
-    <div class="screen" id="s18">
+    </div></div>
+
+<!-- S18 CRÉER UNE ACTIVITÉ -->
+    <div class="phone-wrap-single"><div class="phone-label">19. Créer activité</div><div class="phone-frame"><div class="status-bar"><span class="status-time">9:41</span><div class="status-right"><div class="s-icon" style="width:15px;clip-path:polygon(50% 0%,0% 100%,100% 100%);border-radius:0;background:var(--dark);height:10px;"></div><div class="s-icon" style="width:16px;background:var(--dark);height:10px;"></div></div></div><div class="screen" id="s18">
       <div class="top-bar">
         <div class="back-btn" onclick="goTo('s16')">←</div>
         <div class="top-title">Nouvelle activité</div>
@@ -1795,8 +1824,10 @@
       </div>
     </div>
 
-    <!-- S19 SALONS PASSION -->
-    <div class="screen" id="s19">
+    </div></div>
+
+<!-- S19 SALONS PASSION -->
+    <div class="phone-wrap-single"><div class="phone-label">20. Salons</div><div class="phone-frame"><div class="status-bar"><span class="status-time">9:41</span><div class="status-right"><div class="s-icon" style="width:15px;clip-path:polygon(50% 0%,0% 100%,100% 100%);border-radius:0;background:var(--dark);height:10px;"></div><div class="s-icon" style="width:16px;background:var(--dark);height:10px;"></div></div></div><div class="screen" id="s19">
       <div class="top-bar">
         <div style="font-size:20px;font-weight:800;color:#1A1A1A;letter-spacing:-0.5px;">Sortir</div>
         <div style="width:36px;height:36px;background:#F5F5F5;border-radius:10px;"></div>
@@ -1880,8 +1911,10 @@
       </div>
     </div>
 
-    <!-- S20 INTÉRIEUR SALON -->
-    <div class="screen" id="s20">
+    </div></div>
+
+<!-- S20 INTÉRIEUR SALON -->
+    <div class="phone-wrap-single"><div class="phone-label">22. Intérieur salon</div><div class="phone-frame"><div class="status-bar"><span class="status-time">9:41</span><div class="status-right"><div class="s-icon" style="width:15px;clip-path:polygon(50% 0%,0% 100%,100% 100%);border-radius:0;background:var(--dark);height:10px;"></div><div class="s-icon" style="width:16px;background:var(--dark);height:10px;"></div></div></div><div class="screen" id="s20">
       <div class="chat-header" style="border-bottom:1px solid #F0F0F0;">
         <div class="back-btn" onclick="goTo('s19')">←</div>
         <div style="width:40px;height:40px;border-radius:12px;background:#C8A8E8;display:flex;align-items:center;justify-content:center;font-size:20px;">🎬</div>
@@ -1946,8 +1979,10 @@
       </div>
     </div>
 
-    <!-- S21 PROFIL PERSO -->
-    <div class="screen" id="s21">
+    </div></div>
+
+<!-- S21 PROFIL PERSO -->
+    <div class="phone-wrap-single"><div class="phone-label">23. Mon profil</div><div class="phone-frame"><div class="status-bar"><span class="status-time">9:41</span><div class="status-right"><div class="s-icon" style="width:15px;clip-path:polygon(50% 0%,0% 100%,100% 100%);border-radius:0;background:var(--dark);height:10px;"></div><div class="s-icon" style="width:16px;background:var(--dark);height:10px;"></div></div></div><div class="screen" id="s21">
       <!-- Ambiance différente — fond sombre -->
       <div style="background:#1A1A1A;padding:44px 20px 24px;flex-shrink:0;position:relative;">
         <div style="display:flex;justify-content:space-between;align-items:flex-start;">
@@ -2046,8 +2081,10 @@
       </div>
     </div>
 
-    <!-- S22 MESSAGES AVEC GROUPES -->
-    <div class="screen" id="s22">
+    </div></div>
+
+<!-- S22 MESSAGES AVEC GROUPES -->
+    <div class="phone-wrap-single"><div class="phone-label">24. Messages</div><div class="phone-frame"><div class="status-bar"><span class="status-time">9:41</span><div class="status-right"><div class="s-icon" style="width:15px;clip-path:polygon(50% 0%,0% 100%,100% 100%);border-radius:0;background:var(--dark);height:10px;"></div><div class="s-icon" style="width:16px;background:var(--dark);height:10px;"></div></div></div><div class="screen" id="s22">
       <div class="top-bar">
         <div class="top-title">Messages</div>
         <div style="width:36px;height:36px;background:#F5F5F5;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer;">✏️</div>
@@ -2123,8 +2160,10 @@
       </div>
     </div>
 
-    <!-- S19B MES SALONS -->
-    <div class="screen" id="s19b">
+    </div></div>
+
+<!-- S19B MES SALONS -->
+    <div class="phone-wrap-single"><div class="phone-label">21. Mes salons</div><div class="phone-frame"><div class="status-bar"><span class="status-time">9:41</span><div class="status-right"><div class="s-icon" style="width:15px;clip-path:polygon(50% 0%,0% 100%,100% 100%);border-radius:0;background:var(--dark);height:10px;"></div><div class="s-icon" style="width:16px;background:var(--dark);height:10px;"></div></div></div><div class="screen" id="s19b">
       <div class="top-bar">
         <div style="font-size:20px;font-weight:800;color:#1A1A1A;letter-spacing:-0.5px;">Sortir</div>
         <div style="width:36px;height:36px;background:#F5F5F5;border-radius:10px;"></div>
@@ -2176,8 +2215,10 @@
       </div>
     </div>
 
-    <!-- S21B MES SOUVENIRS (ARCHIVES) -->
-    <div class="screen" id="s21b">
+    </div></div>
+
+<!-- S21B MES SOUVENIRS (ARCHIVES) -->
+    <div class="phone-wrap-single"><div class="phone-label">30. Mes souvenirs</div><div class="phone-frame"><div class="status-bar"><span class="status-time">9:41</span><div class="status-right"><div class="s-icon" style="width:15px;clip-path:polygon(50% 0%,0% 100%,100% 100%);border-radius:0;background:var(--dark);height:10px;"></div><div class="s-icon" style="width:16px;background:var(--dark);height:10px;"></div></div></div><div class="screen" id="s21b">
       <div class="top-bar">
         <div class="back-btn" onclick="goTo('s21')">←</div>
         <div class="top-title">Mes souvenirs</div>
@@ -2209,8 +2250,10 @@
       </div>
     </div>
 
-    <!-- S24 ALBUM PARTAGÉ -->
-    <div class="screen" id="s24">
+    </div></div>
+
+<!-- S24 ALBUM PARTAGÉ -->
+    <div class="phone-wrap-single"><div class="phone-label">25. Album partagé</div><div class="phone-frame"><div class="status-bar"><span class="status-time">9:41</span><div class="status-right"><div class="s-icon" style="width:15px;clip-path:polygon(50% 0%,0% 100%,100% 100%);border-radius:0;background:var(--dark);height:10px;"></div><div class="s-icon" style="width:16px;background:var(--dark);height:10px;"></div></div></div><div class="screen" id="s24">
       <div class="top-bar">
         <div class="back-btn" onclick="goTo('s13')">←</div>
         <div class="top-title">Nos souvenirs</div>
@@ -2283,8 +2326,10 @@
       </div>
     </div>
 
-    <!-- S25 CALENDRIER RDV -->
-    <div class="screen" id="s25">
+    </div></div>
+
+<!-- S25 CALENDRIER RDV -->
+    <div class="phone-wrap-single"><div class="phone-label">26. Planifier RDV</div><div class="phone-frame"><div class="status-bar"><span class="status-time">9:41</span><div class="status-right"><div class="s-icon" style="width:15px;clip-path:polygon(50% 0%,0% 100%,100% 100%);border-radius:0;background:var(--dark);height:10px;"></div><div class="s-icon" style="width:16px;background:var(--dark);height:10px;"></div></div></div><div class="screen" id="s25">
       <div class="top-bar">
         <div class="back-btn" onclick="goTo('s13')">←</div>
         <div class="top-title">Planifier une sortie</div>
@@ -2355,8 +2400,10 @@
       </div>
     </div>
 
-    <!-- S26 MES POINTS & BADGES -->
-    <div class="screen" id="s26">
+    </div></div>
+
+<!-- S26 MES POINTS & BADGES -->
+    <div class="phone-wrap-single"><div class="phone-label">27. Points & Badges</div><div class="phone-frame"><div class="status-bar"><span class="status-time">9:41</span><div class="status-right"><div class="s-icon" style="width:15px;clip-path:polygon(50% 0%,0% 100%,100% 100%);border-radius:0;background:var(--dark);height:10px;"></div><div class="s-icon" style="width:16px;background:var(--dark);height:10px;"></div></div></div><div class="screen" id="s26">
       <div class="top-bar">
         <div class="back-btn" onclick="goTo('s21')">←</div>
         <div class="top-title">Points & Badges</div>
@@ -2431,8 +2478,10 @@
       </div>
     </div>
 
-    <!-- S27 COUPS DE CŒUR REÇUS -->
-    <div class="screen" id="s27">
+    </div></div>
+
+<!-- S27 COUPS DE CŒUR REÇUS -->
+    <div class="phone-wrap-single"><div class="phone-label">28. Coups reçus</div><div class="phone-frame"><div class="status-bar"><span class="status-time">9:41</span><div class="status-right"><div class="s-icon" style="width:15px;clip-path:polygon(50% 0%,0% 100%,100% 100%);border-radius:0;background:var(--dark);height:10px;"></div><div class="s-icon" style="width:16px;background:var(--dark);height:10px;"></div></div></div><div class="screen" id="s27">
       <div class="top-bar">
         <div class="back-btn" onclick="goTo('s14')">←</div>
         <div class="top-title">Coups de cœur reçus</div>
@@ -2511,8 +2560,10 @@
       </div>
     </div>
 
-    <!-- S28 QR CODE PROFIL -->
-    <div class="screen" id="s28">
+    </div></div>
+
+<!-- S28 QR CODE PROFIL -->
+    <div class="phone-wrap-single"><div class="phone-label">29. QR code</div><div class="phone-frame"><div class="status-bar"><span class="status-time">9:41</span><div class="status-right"><div class="s-icon" style="width:15px;clip-path:polygon(50% 0%,0% 100%,100% 100%);border-radius:0;background:var(--dark);height:10px;"></div><div class="s-icon" style="width:16px;background:var(--dark);height:10px;"></div></div></div><div class="screen" id="s28">
       <div class="top-bar">
         <div class="back-btn" onclick="goTo('s21')">←</div>
         <div class="top-title">Mon QR code</div>
@@ -2581,20 +2632,7 @@
 
       </div>
     </div>
-
-  </div>
-</div>
-
-<script>
-  function goTo(id) {
-    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-    document.querySelectorAll('.nav-btn').forEach((b, i) => {
-      b.classList.toggle('active', b.getAttribute('onclick') === `goTo('${id}')`);
-    });
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-</script>
+<script></script>
 
 </body>
 </html>
